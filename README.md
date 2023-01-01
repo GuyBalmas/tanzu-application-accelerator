@@ -1,47 +1,27 @@
-# tanzu-application-accelerator
+# tanzu-java-app
 
-```bash
-export GIT_REPOSITORY_URL=https://github.com/GuyBalmas/tanzu-application-accelerator.git
-export GIT_BRANCH=main
-export ACCELERATOR_NAME=my-simple-acc
-```
+This is a sample of a Java Spring app that works with Tilt and the Tanzu Application Platform.
 
-```bash
-tanzu accelerator create ${ACCELERATOR_NAME} --git-repository ${GIT_REPOSITORY_URL} --git-branch ${GIT_BRANCH}
-```
-**output:**
-```bash
-created accelerator my-simple-acc in namespace accelerator-system
-```
+## Dependencies
+1. [kubectl CLI](https://kubernetes.io/docs/tasks/tools/)
+1. [Tilt version >= v0.23.2](https://docs.tilt.dev/install.html)
+1. Tanzu CLI and the apps plugin v0.2.0 which are provided as part of [Tanzu Application Platform](https://network.tanzu.vmware.com/products/tanzu-application-platform)
+1. A cluster with Tanzu Application Platform, and the "Default Supply Chain", plus its dependencies. This supply chains is part of [Tanzu Application Platform](https://network.tanzu.vmware.com/products/tanzu-application-platform).
 
-### Updating an accelerator
-After you push any changes to your Git repository, the accelerator is refreshed based on the git.interval setting for the Accelerator resource. The default value is 10 minutes. To force an immediate reconciliation, run:
-```bash
-tanzu accelerator update ${ACCELERATOR_NAME} --reconcile
+## Running the sample
+
+Start the app deployment by running:
+
+```
+tilt up
 ```
 
-### Deleting an accelerator
-```bash
-tanzu accelerator delete ACCELERATOR-NAME
-```
+You can hit the spacebar to open the UI in a browser. 
 
-### Using an accelerator manifest
-You can also create a separate manifest file and apply it to the cluster by using the Tanzu CLI:
-
-1. Create a simple-manifest.yaml file and add the following content:
-```bash
-apiVersion: accelerator.apps.tanzu.vmware.com/v1alpha1
-kind: Accelerator
-metadata:
-  name: simple
-  namespace: accelerator-system
-spec:
-  git:
-    url: YOUR-GIT-REPOSITORY-URL
-    ref:
-      branch: YOUR-GIT-BRANCH
-```
-2. Apply:
-```bash
-kubectl apply -f simple-manifest.yaml
-```
+- > If you see an "Update error" message like the one below, then just follow the instructions and allow that context:
+    ```
+    Stop! tap-beta2 might be production.
+    If you're sure you want to deploy there, add:
+        allow_k8s_contexts('tap-beta2')
+    to your Tiltfile. Otherwise, switch k8s contexts and restart Tilt.
+    ```
