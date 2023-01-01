@@ -37,3 +37,4 @@ engine:
           substitutions:
             - text: "default-greeting-description"
               with: "#greetingDescription"
+        - type: YTT
