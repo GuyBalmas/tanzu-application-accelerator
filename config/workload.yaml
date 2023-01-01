@@ -1,3 +1,5 @@
+#@ load("@ytt:data", "data")
+
 apiVersion: carto.run/v1alpha1
 kind: Workload
 metadata:
@@ -7,14 +9,19 @@ metadata:
     apps.tanzu.vmware.com/has-tests: "true"
     app.kubernetes.io/part-of: example-k8s-app
 spec:
+  env:
+    - name: GREETING_MSG
+      value: #@ data.values.greetMsg
+    - name: GREETING_DESC
+      value: #@ data.values.greetDesc
   params:
-  - name: annotations
-    value:
-      autoscaling.knative.dev/minScale: "1"
-  - name: testing_pipeline_matching_labels
-    value:
-      apps.tanzu.vmware.com/framework: maven
-      apps.tanzu.vmware.com/pipeline: test
+    - name: annotations
+      value:
+        autoscaling.knative.dev/minScale: "1"
+    - name: testing_pipeline_matching_labels
+      value:
+        apps.tanzu.vmware.com/framework: maven
+        apps.tanzu.vmware.com/pipeline: test
   source:
     git:
       ref:

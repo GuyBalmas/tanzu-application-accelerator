@@ -1,0 +1,4 @@
+#@data/values
+---
+greetingMsg: default-greeting-message
+greetingDesc: default-greeting-description
