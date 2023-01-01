@@ -1,7 +1,7 @@
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
-  name: tanzu-java-app
+  name: example-k8s-app
   description: Tanzu Java Spring-Boot Web App, displaying kubernetes info on '/k8s' endpoint. Written by Guy Balmas.
   tags:
     - app-accelerator
@@ -11,12 +11,12 @@ metadata:
     - tanzu
     - kubernetes
   annotations:
-    'backstage.io/kubernetes-label-selector': 'app.kubernetes.io/part-of=tanzu-java-app'
+    'backstage.io/kubernetes-label-selector': 'app.kubernetes.io/part-of=example-k8s-app'
     'backstage.io/techdocs-ref': dir:.
   links:
-    - url: http://tanzu-java-app.apps.tap-guy-lab-p8m8nm3rts18.ts-cna.com
+    - url: http://example-k8s-app.apps.tap-guy-lab-p8m8nm3rts18.ts-cna.com
       name: Hello-World
-    - url: http://tanzu-java-app.apps.tap-guy-lab-p8m8nm3rts18.ts-cna.com/k8s
+    - url: http://example-k8s-app.apps.tap-guy-lab-p8m8nm3rts18.ts-cna.com/k8s
       name: K8S-spec
 spec:
   type: service
