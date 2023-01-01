@@ -22,3 +22,13 @@ accelerator:
       inputType: text
       required: true
       defaultValue: by Cloud Native Applications team.
+  
+  merge:
+    - include: ['Tiltfile']
+      chain:
+        - type: ReplaceText
+          substitutions:
+            - text: default-greeting-message
+              with: "#greetingMessage"
+            - test: default-greeting-description
+              with: "#greetingDescription"
