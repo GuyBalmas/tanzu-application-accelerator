@@ -26,8 +26,8 @@ accelerator:
 engine:
   merge:
     - include: [ "**/*" ]
-      exclude: [ ".vscode", "target", "config", "README-ACCELERATOR.md", "sample-acc.yaml"]
-    - include: ['config/*.yaml']
+      exclude: [ ".vscode", "target", "config", "docs"]
+    - include: ['config/workload.yaml']
       chain:
         - type: ReplaceText
           substitutions:
