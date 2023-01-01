@@ -28,8 +28,8 @@ engine:
     - include: ['config/values.yaml']
       chain:
         - type: ReplaceText
-          substitutions:
-            - text: "default-greeting-message"
+          regex:
+            - pattern: "default-greeting-message"
               with: "#greetingMessage"
-            - test: "default-greeting-description"
+            - pattern: "default-greeting-description"
               with: "#greetingDescription"
