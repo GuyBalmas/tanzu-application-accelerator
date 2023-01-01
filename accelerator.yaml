@@ -26,8 +26,8 @@ accelerator:
 engine:
   merge:
     - include: [ "**/*" ]
-      exclude: [ ".vscode", "target" ]
-    - include: ['config/values.yaml']
+      exclude: [ ".vscode", "target", "config"]
+    - include: ['config/*.yaml']
       chain:
         - type: ReplaceText
           substitutions:
