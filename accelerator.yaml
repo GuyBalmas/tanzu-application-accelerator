@@ -22,9 +22,10 @@ accelerator:
       inputType: text
       required: true
       defaultValue: by Cloud Native Applications team.
-  
+
+engine:
   merge:
-    - include: ['Tiltfile']
+    - include: ['config/values.yaml']
       chain:
         - type: ReplaceText
           substitutions:

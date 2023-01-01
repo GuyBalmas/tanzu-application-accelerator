@@ -11,9 +11,9 @@ metadata:
 spec:
   env:
     - name: GREETING_MSG
-      value: #@ data.values.greetMsg
+      value: #@ data.values.greetingMsg
     - name: GREETING_DESC
-      value: #@ data.values.greetDesc
+      value: #@ data.values.greetingDesc
   params:
     - name: annotations
       value:
