@@ -28,7 +28,7 @@ accelerator:
       chain:
         - type: ReplaceText
           substitutions:
-            - text: default-greeting-message
+            - text: "default-greeting-message"
               with: "#greetingMessage"
-            - test: default-greeting-description
+            - test: "default-greeting-description"
               with: "#greetingDescription"

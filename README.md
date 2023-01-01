@@ -17,7 +17,7 @@ created accelerator my-simple-acc in namespace accelerator-system
 ### Updating an accelerator
 After you push any changes to your Git repository, the accelerator is refreshed based on the git.interval setting for the Accelerator resource. The default value is 10 minutes. To force an immediate reconciliation, run:
 ```bash
-tanzu accelerator update ${ACCELERATOR-NAME} --reconcile
+tanzu accelerator update ${ACCELERATOR_NAME} --reconcile
 ```
 
 ### Deleting an accelerator
