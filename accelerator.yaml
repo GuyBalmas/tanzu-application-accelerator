@@ -1,8 +1,24 @@
 accelerator:
-  displayName: My Simple Accelerator
-  description: Contains just a README
+  displayName: Kubernetes Java Web App
+  description: Tanzu Java Spring-Boot Web App, displaying kubernetes info.
   iconUrl: https://upload.wikimedia.org/wikipedia/labs/b/ba/Kubernetes-icon-color.svg
   tags:
-  - simple
-  - kubernetes
-  - getting-started
+  - Java
+  - Kubernetes
+  - Spring-Boot
+
+  options: # a list of options
+    - name: greetingMessage
+      label: Greeting Message
+      description: Greeting message displayed by the Hello World app.
+      dataType: string
+      inputType: text
+      required: true
+      defaultValue: Welcome to TAP accelerator demo!
+    - name: greetingDescription
+      label: Greeting Description
+      description: Greeting message description displayed by the Hello World app.
+      dataType: string
+      inputType: text
+      required: true
+      defaultValue: by Cloud Native Applications team.
