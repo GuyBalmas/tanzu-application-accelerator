@@ -27,7 +27,7 @@ engine:
   merge:
     - include: [ "**/*" ]
       exclude: [ ".vscode", "target", "config", "docs"]
-    - include: ['config/workload.yaml']
+    - include: ['config/*.yaml']
       chain:
         - type: ReplaceText
           substitutions:
