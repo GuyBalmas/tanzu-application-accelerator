@@ -1,0 +1,8 @@
+accelerator:
+  displayName: My Simple Accelerator
+  description: Contains just a README
+  iconUrl: https://upload.wikimedia.org/wikipedia/labs/b/ba/Kubernetes-icon-color.svg
+  tags:
+  - simple
+  - kubernetes
+  - getting-started
