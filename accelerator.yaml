@@ -25,11 +25,10 @@ accelerator:
 
 engine:
   merge:     
-    - include: ['**/*']
-      exclude: [ ".vscode", "target", "docs"]
+    # - include: ['**/*']
+    #   exclude: [ ".vscode", "target", "docs"]
+    - include: ["config", "catalog"]
       chain:
-        - type: Include
-          patterns: ["config", "catalog"]
         - type: ReplaceText
           substitutions:
             - text: "default-greeting-message"
@@ -39,5 +38,6 @@ engine:
             - text: "default-project-name"
               with: "#projectName"
         - type: YTT
+    - include: ["src"]
     
 
