@@ -96,7 +96,7 @@ engine:
             - text: "<default-project-name>"
               with: "#projectName"
             - text: "allow_k8s_contexts('<k8s-context>')" 
-              with: ""
+              with: "#clusterContext" # cannot be empty string, bypassing by setting a null var as replacement text
     
     - include: ['Tiltfile']
       condition: "#chooseCluster == 'specificCluster'"
@@ -107,10 +107,7 @@ engine:
               with: "#projectName"
             - text: "<k8s-context>"
               with: "#clusterContext"
-            # - text: "<"
-            #   with: "'"
-            # - text: ">"
-            #   with: "'"
+            
   # # onConflict: UseFirst
     
 
