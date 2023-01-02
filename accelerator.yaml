@@ -90,7 +90,7 @@ engine:
               with: "'k8s_context()'"
     
     - include: ['Tiltfile']
-      condition: "#chooseCluster == 'local'"
+      condition: "#chooseCluster == 'local' and #enableLiveUpdate"
       chain:
         - type: ReplaceText
           substitutions:
@@ -100,7 +100,7 @@ engine:
               with: "#clusterContext" # cannot be empty string, bypassing by setting a null var as replacement text
     
     - include: ['Tiltfile']
-      condition: "#chooseCluster == 'specificCluster'"
+      condition: "#chooseCluster == 'specificCluster' and #enableLiveUpdate"
       chain:
         - type: ReplaceText
           substitutions:
