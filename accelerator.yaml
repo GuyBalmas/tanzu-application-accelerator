@@ -90,13 +90,13 @@ engine:
     
     - include: ['Tiltfile']
       condition: "#chooseCluster == 'local'"
-      chain:
-        - type: ReplaceText
-          substitutions:
-            - text: "<default-project-name>"
-              with: "#projectName"
-            - text: "'allow_k8s_contexts(<k8s-context>)'"
-              with: " "
+      # chain:
+      #   - type: ReplaceText
+      #     substitutions:
+      #       - text: "<default-project-name>"
+      #         with: "#projectName"
+      #       - text: "'allow_k8s_contexts(<k8s-context>)'"
+      #         with: " "
     
   #   - include: ['Tiltfile']
   #     condition: "#chooseCluster == 'specificCluster'"
