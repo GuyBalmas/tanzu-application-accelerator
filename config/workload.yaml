@@ -3,11 +3,11 @@
 apiVersion: carto.run/v1alpha1
 kind: Workload
 metadata:
-  name: example-k8s-app
+  name: #@ data.values.projectName
   labels:
     apps.tanzu.vmware.com/workload-type: web
     apps.tanzu.vmware.com/has-tests: "true"
-    app.kubernetes.io/part-of: example-k8s-app
+    app.kubernetes.io/part-of: #@ data.values.projectName
 spec:
   env:
     - name: GREETING_MSG
@@ -27,4 +27,4 @@ spec:
       ref:
         branch: main
       url: https://github.com/vmware-tanzu/application-accelerator-samples.git
-    subPath: example-k8s-app
+    subPath: tanzu-java-web-app

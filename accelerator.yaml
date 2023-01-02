@@ -24,17 +24,16 @@ accelerator:
       defaultValue: by Cloud Native Applications team.
 
 engine:
-  merge:
-    - include: [ "**/*" ]
-      exclude: [ ".vscode", "target", "config", "docs"]
-    - include: ['config/*.yaml']
+  merge:     
+    - include: ['**/*']
+      exclude: [ ".vscode", "target", "docs"]
       chain:
         - type: ReplaceText
           substitutions:
             - text: "default-greeting-message"
               with: "#greetingMessage"
-        - type: ReplaceText
-          substitutions:
             - text: "default-greeting-description"
               with: "#greetingDescription"
+            - text: "default-project-name"
+              with: "#projectName"
         - type: YTT
