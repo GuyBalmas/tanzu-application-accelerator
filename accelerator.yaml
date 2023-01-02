@@ -63,7 +63,7 @@ engine:
   merge:     
     # - include: ['src/**', 'pom.xml', 'Tiltfile', '.giignore', '.tanzuignore', 'LICENSE', 'mvnw', 'mvnw.cmd', '.mvn/**', 'README.md', "catalog/docs/**"]
     - include: ['*/**']
-      exclude: ['config/**', 'catalog/*.yaml', 'target/**', 'docs/**', '.vscode/**']
+      exclude: ['Tiltfile', 'config/**', 'catalog/*.yaml', 'target/**', 'docs/**', '.vscode/**']
     - include: ["config/**", "catalog/*.yaml"]
       exclude: ["catalog/docs/**"]
       chain:
@@ -76,6 +76,36 @@ engine:
             - text: "default-project-name"
               with: "#projectName"
         - type: YTT
+    
+    - include: ['Tiltfile']
+      condition: "#chooseCluster == 'allClusters'"
+      chain:
+        - type: ReplaceText
+          substitutions:
+            - text: "<project-name>"
+              with: "#projectName"
+            - text: "<k8s-context>"
+              with: "k8s_context()"
+    
+    - include: ['Tiltfile']
+      condition: "#chooseCluster == 'localClusters'"
+      chain:
+        - type: ReplaceText
+          substitutions:
+            - text: "<project-name>"
+              with: "#projectName"
+            - text: "allow_k8s_contexts('<k8s-context>')"
+              with: ""
+    
+    - include: ['Tiltfile']
+      condition: "#chooseCluster == 'specificCluster'"
+      chain:
+        - type: ReplaceText
+          substitutions:
+            - text: "<project-name>"
+              with: "#projectName"
+            - text: "<k8s-context>"
+              with: "#specificCluster"
   # onConflict: UseFirst
     
 
