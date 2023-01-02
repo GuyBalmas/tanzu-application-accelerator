@@ -22,6 +22,24 @@ accelerator:
       inputType: text
       required: true
       defaultValue: by Cloud Native Applications team.
+    
+    - name: enableLiveUpdate
+      label: Enable Live Update
+      description: Enables Live Update & Live Debug features
+      inputType: checkbox
+      dataType: boolean
+      defaultValue: false
+
+    - name: optionalText
+      label: Optional Text
+      description: Optional Text
+      dataType: string
+      inputType: text
+      required: true
+      defaultValue: Optional Text
+      dependsOn: 
+        name: enableLiveUpdate
+        value: [true]
 
 engine:
   merge:     
