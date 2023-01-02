@@ -28,6 +28,7 @@ accelerator:
       description: Enables Live Update & Live Debug features
       inputType: checkbox
       dataType: boolean
+      required: true
       defaultValue: true
 
     - name: chooseCluster
@@ -45,6 +46,7 @@ accelerator:
       defaultValue: allClusters
       dependsOn:
         name: enableLiveUpdate
+      required: true
 
     - name: clusterContext
       label: Cluster Context
