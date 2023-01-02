@@ -25,8 +25,8 @@ accelerator:
 
 engine:
   merge:     
-    - include: ["src"]
-    - include: ["config", "catalog"]
+    - include: ["src/*"]
+    - include: ["config/*", "catalog/*"]
       chain:
         - type: ReplaceText
           substitutions:
