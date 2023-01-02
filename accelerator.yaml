@@ -83,7 +83,7 @@ engine:
       chain:
         - type: ReplaceText
           substitutions:
-            - text: "project-name"
+            - text: "default-project-name"
               with: "#projectName"
             - text: "k8s-context"
               with: "k8s_context()"
