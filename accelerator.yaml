@@ -88,15 +88,15 @@ engine:
             - text: "<k8s-context>"
               with: "'k8s_context()'"
     
-  #   - include: ['Tiltfile']
-  #     condition: "#chooseCluster == 'localClusters'"
-  #     chain:
-  #       - type: ReplaceText
-  #         substitutions:
-  #           - text: "<default-project-name>"
-  #             with: "#projectName"
-  #           - text: "allow_k8s_contexts(<k8s-context>)"
-  #             with: " "
+    - include: ['Tiltfile']
+      condition: "#chooseCluster == 'localClusters'"
+      chain:
+        - type: ReplaceText
+          substitutions:
+            - text: "<default-project-name>"
+              with: "#projectName"
+            - text: "'allow_k8s_contexts(<k8s-context>)'"
+              with: " "
     
   #   - include: ['Tiltfile']
   #     condition: "#chooseCluster == 'specificCluster'"
