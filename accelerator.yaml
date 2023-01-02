@@ -28,17 +28,34 @@ accelerator:
       description: Enables Live Update & Live Debug features
       inputType: checkbox
       dataType: boolean
-      defaultValue: false
+      defaultValue: true
 
-    - name: optionalText
-      label: Optional Text
-      description: Optional Text
+    - name: chooseCluster
+      label: Choose Cluster
+      description: Choose which clusters to auto-configure for the project, or specify a custom context of a specific cluster.
+      inputType: select
+      dataType: string
+      choices:
+      - text: "All Clusters"
+        value: allClusters 
+      - text: "Only Local Clusters"
+        value: localClusters
+      - text: "Specific Cluster"
+        value: specificCluster
+      defaultValue: allClusters
+      dependsOn:
+        name: enableLiveUpdate
+
+    - name: clusterContext
+      label: Cluster Context
+      description: Specify the cluster's context
       dataType: string
       inputType: text
       required: true
-      defaultValue: Optional Text
+      defaultValue: ""
       dependsOn: 
-        name: enableLiveUpdate
+        name: chooseCluster
+        value: specificCluster
 
 engine:
   merge:     
