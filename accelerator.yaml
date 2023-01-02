@@ -28,9 +28,9 @@ engine:
 
   merge:     
     # - include: ['src/**', 'pom.xml', 'Tiltfile', '.giignore', '.tanzuignore', 'LICENSE', 'mvnw', 'mvnw.cmd', '.mvn/**', 'README.md', "catalog/docs/**"]
-    - include: ['*/**', "catalog/docs/**"]
-      exclude: ['config/**', 'catalog/**', 'target/**', 'docs/**', '.vscode/**']
-    - include: ["config/**", "catalog/**"]
+    - include: ['*/**']
+      exclude: ['config/**', 'catalog/*.yaml', 'target/**', 'docs/**', '.vscode/**']
+    - include: ["config/**", "catalog/*.yaml"]
       exclude: ["catalog/docs/**"]
       chain:
         - type: ReplaceText
