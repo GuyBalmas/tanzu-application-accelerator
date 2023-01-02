@@ -95,7 +95,7 @@ engine:
             - text: "<project-name>"
               with: "#projectName"
             - text: "allow_k8s_contexts('<k8s-context>')"
-              with: ""
+              with: " "
     
     - include: ['Tiltfile']
       condition: "#chooseCluster == 'specificCluster'"
