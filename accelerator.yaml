@@ -26,7 +26,7 @@ accelerator:
 engine:
   merge:     
     - include: ['**/*']
-      exclude: [ ".vscode", "target", "docs"]
+      exclude: [ ".vscode", "target", "docs", "config", "catalog"]
     - include: ["config", "catalog"]
       chain:
         - type: ReplaceText
@@ -38,3 +38,4 @@ engine:
             - text: "default-project-name"
               with: "#projectName"
         - type: YTT
+
