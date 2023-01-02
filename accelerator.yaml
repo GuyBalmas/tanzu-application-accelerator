@@ -61,7 +61,6 @@ accelerator:
 
 engine:
   merge:     
-    # - include: ['src/**', 'pom.xml', 'Tiltfile', '.giignore', '.tanzuignore', 'LICENSE', 'mvnw', 'mvnw.cmd', '.mvn/**', 'README.md', "catalog/docs/**"]
     - include: ['*/**']
       exclude: ['Tiltfile', 'config/**', 'catalog/*.yaml', 'target/**', 'docs/**', '.vscode/**']
     
