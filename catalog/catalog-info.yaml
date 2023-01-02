@@ -1,3 +1,6 @@
+#@ load("@ytt:data", "data")
+--- 
+
 apiVersion: backstage.io/v1alpha1
 kind: Component
 metadata:
@@ -12,8 +15,9 @@ metadata:
     - tanzu
     - kubernetes
   annotations:
-    'backstage.io/kubernetes-label-selector': 'app.kubernetes.io/part-of=' #@ data.values.projectName
-    'backstage.io/techdocs-ref': dir:.
+    #@yaml/text-templated-strings
+    'backstage.io/kubernetes-label-selector': "app.kubernetes.io/part-of=(@= data.values.projectName @)"
+    'backstage.io/techdocs-ref': 'dir:.'
   links:
     #@yaml/text-templated-strings
     - url: "http://(@= data.values.projectName @).apps.tap-guy-lab-p8m8nm3rts18.ts-cna.com"

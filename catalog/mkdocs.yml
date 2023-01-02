@@ -1,4 +1,7 @@
-site_name: 'tanzu-java-app'
+#@ load("@ytt:data", "data")
+--- 
+
+site_name: #@ data.values.projectName
 
 nav:
   - Home: index.md
