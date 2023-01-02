@@ -26,8 +26,7 @@ accelerator:
 engine:
   merge:     
     - include: ['**/*']
-      exclude: [ ".vscode", "target", "docs",  "catalog", "config"]
-    - include: ["config", "catalog"]
+      exclude: [ ".vscode", "target", "docs"]
       chain:
         - type: ReplaceText
           substitutions:
