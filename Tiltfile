@@ -19,6 +19,7 @@ k8s_custom_deploy(
       sync('./target/classes', '/workspace/BOOT-INF/classes')
     ],
 )
+
 allow_k8s_contexts('<k8s-context>')
 
 k8s_resource(<default-project-name>, port_forwards=["8080:8080"],
