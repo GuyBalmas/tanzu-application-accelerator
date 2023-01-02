@@ -80,7 +80,7 @@ engine:
         - type: YTT
     
     - include: ['Tiltfile']
-      condition: "#chooseCluster == 'all' and #enableLiveUpdate == 'true'"
+      condition: "#chooseCluster == 'all' and #enableLiveUpdate"
       chain:
         - type: ReplaceText
           substitutions:
