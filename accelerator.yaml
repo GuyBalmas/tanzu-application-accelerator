@@ -88,25 +88,25 @@ engine:
             - text: "k8s-context"
               with: "k8s_context()"
     
-    - include: ['Tiltfile']
-      condition: "#chooseCluster == 'localClusters'"
-      chain:
-        - type: ReplaceText
-          substitutions:
-            - text: "<project-name>"
-              with: "#projectName"
-            - text: "allow_k8s_contexts('<k8s-context>')"
-              with: " "
+    # - include: ['Tiltfile']
+    #   condition: "#chooseCluster == 'localClusters'"
+    #   chain:
+    #     - type: ReplaceText
+    #       substitutions:
+    #         - text: "<project-name>"
+    #           with: "#projectName"
+    #         - text: "allow_k8s_contexts('<k8s-context>')"
+    #           with: " "
     
-    - include: ['Tiltfile']
-      condition: "#chooseCluster == 'specificCluster'"
-      chain:
-        - type: ReplaceText
-          substitutions:
-            - text: "<project-name>"
-              with: "#projectName"
-            - text: "<k8s-context>"
-              with: "#chooseCluster"
+    # - include: ['Tiltfile']
+    #   condition: "#chooseCluster == 'specificCluster'"
+    #   chain:
+    #     - type: ReplaceText
+    #       substitutions:
+    #         - text: "<project-name>"
+    #           with: "#projectName"
+    #         - text: "<k8s-context>"
+    #           with: "#chooseCluster"
   # onConflict: UseFirst
     
 
