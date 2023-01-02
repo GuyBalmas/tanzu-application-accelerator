@@ -24,8 +24,6 @@ accelerator:
       defaultValue: by Cloud Native Applications team.
 
 engine:
-  chain:
-
   merge:     
     # - include: ['src/**', 'pom.xml', 'Tiltfile', '.giignore', '.tanzuignore', 'LICENSE', 'mvnw', 'mvnw.cmd', '.mvn/**', 'README.md', "catalog/docs/**"]
     - include: ['*/**']
