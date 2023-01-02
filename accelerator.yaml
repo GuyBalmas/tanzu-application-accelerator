@@ -38,12 +38,12 @@ accelerator:
       dataType: string
       choices:
       - text: "All Clusters"
-        value: allClusters 
+        value: all 
       - text: "Only Local Clusters"
-        value: localClusters
+        value: local
       - text: "Specific Cluster"
         value: specificCluster
-      defaultValue: allClusters
+      defaultValue: all
       dependsOn:
         name: enableLiveUpdate
       required: true
@@ -79,7 +79,7 @@ engine:
         - type: YTT
     
     - include: ['Tiltfile']
-      condition: "#chooseCluster == 'allClusters'"
+      condition: "#chooseCluster == 'all'"
       chain:
         - type: ReplaceText
           substitutions:
@@ -89,7 +89,7 @@ engine:
               with: "'k8s_context()'"
     
     - include: ['Tiltfile']
-      condition: "#chooseCluster == 'localClusters'"
+      condition: "#chooseCluster == 'local'"
       chain:
         - type: ReplaceText
           substitutions:
