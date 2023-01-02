@@ -43,7 +43,6 @@ accelerator:
         value: local
       - text: "Specific Cluster"
         value: specificCluster
-      defaultValue: all
       dependsOn:
         name: enableLiveUpdate
       required: true
@@ -78,7 +77,7 @@ engine:
         - type: YTT
     
     - include: ['Tiltfile']
-      condition: "#chooseCluster == 'all' && enableLiveUpdate == true"
+      condition: "#chooseCluster == 'all'"
       chain:
         - type: ReplaceText
           substitutions:
