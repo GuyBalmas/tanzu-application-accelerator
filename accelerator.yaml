@@ -105,7 +105,7 @@ engine:
             - text: "<project-name>"
               with: "#projectName"
             - text: "<k8s-context>"
-              with: "#clusterContext"
+              with: "\"#clusterContext\""
   # # onConflict: UseFirst
     
 
