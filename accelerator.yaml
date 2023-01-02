@@ -104,7 +104,7 @@ engine:
           substitutions:
             - text: "<project-name>"
               with: "#projectName"
-            - text: "k8s-context"
+            - text: "<k8s-context>"
               with: "#clusterContext"
             # - text: "<"
             #   with: "'"
