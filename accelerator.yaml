@@ -29,7 +29,7 @@ accelerator:
       inputType: checkbox
       dataType: boolean
       required: true
-      defaultValue: true
+      defaultValue: false
 
     - name: chooseCluster
       label: Choose Cluster
