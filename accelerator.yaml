@@ -95,9 +95,7 @@ engine:
           substitutions:
             - text: "<default-project-name>"
               with: "#projectName"
-            - text: "allow_k8s_contexts"
-              with: "```comment```"
-    
+            
   #   - include: ['Tiltfile']
   #     condition: "#chooseCluster == 'specificCluster'"
   #     chain:
