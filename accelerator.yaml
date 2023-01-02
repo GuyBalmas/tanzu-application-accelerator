@@ -39,7 +39,6 @@ accelerator:
       defaultValue: Optional Text
       dependsOn: 
         name: enableLiveUpdate
-        value: [true]
 
 engine:
   merge:     
