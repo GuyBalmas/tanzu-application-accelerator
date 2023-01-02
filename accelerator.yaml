@@ -97,19 +97,19 @@ engine:
     #           with: "#projectName"
     #         - text: "allow_k8s_contexts(<k8s-context>)" #problem
     #           with: ""
-    - include: ['Tiltfile']
-      condition: "#chooseCluster == 'specificCluster'"
-      chain:
-        - type: ReplaceText
-          substitutions:
-            - text: "<project-name>"
-              with: "#projectName"
-            - text: "k8s-context"
-              with: "#clusterContext"
-            - text: "<"
-              with: "'"
-            - text: ">"
-              with: "'"
+    # - include: ['Tiltfile']
+    #   condition: "#chooseCluster == 'specificCluster'"
+    #   chain:
+    #     - type: ReplaceText
+    #       substitutions:
+    #         - text: "<project-name>"
+    #           with: "#projectName"
+    #         - text: "k8s-context"
+    #           with: "#clusterContext"
+    #         - text: "<"
+    #           with: "'"
+    #         - text: ">"
+    #           with: "'"
   # # onConflict: UseFirst
     
 
