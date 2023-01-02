@@ -28,7 +28,7 @@ engine:
 
   merge:     
     - include: ['src/**', 'Tiltfile', '.mvn/**', '.giignore', '.tanzuignore', 'LICENSE', 'mvnw', 'mvnw.cmd', 'pom.xml', 'README.md']
-    - include: ["config/**", "catalog/**", "catalog/docs/**"]
+    - include: ["config/**", "catalog/**", "catalog/docs/index.md"]
       chain:
         - type: ReplaceText
           substitutions:
