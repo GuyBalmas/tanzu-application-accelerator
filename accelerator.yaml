@@ -45,7 +45,7 @@ accelerator:
         value: specificCluster
       # - text: "Choose Cluster"
       #   value: choose
-      defaultValue: all
+      # defaultValue: all
       dependsOn:
         name: enableLiveUpdate
       required: true
