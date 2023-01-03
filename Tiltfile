@@ -4,7 +4,7 @@ NAMESPACE = os.getenv("NAMESPACE", default='<default-namespace>')
 OUTPUT_TO_NULL_COMMAND = os.getenv("OUTPUT_TO_NULL_COMMAND", default=' > /dev/null ')
 
 k8s_custom_deploy(
-    <default-project-name>,
+    '<default-project-name>',
     apply_cmd="tanzu apps workload apply -f config/workload.yaml --debug --live-update" +
                " --local-path " + LOCAL_PATH +
                " --source-image " + SOURCE_IMAGE +
@@ -22,5 +22,5 @@ k8s_custom_deploy(
 
 allow_k8s_contexts('<k8s-context>')
 
-k8s_resource(<default-project-name>, port_forwards=["8080:8080"],
-            extra_pod_selectors=[{'serving.knative.dev/service': <default-project-name>}])
+k8s_resource('<default-project-name>', port_forwards=["8080:8080"],
+            extra_pod_selectors=[{'serving.knative.dev/service': '<default-project-name>'}])
