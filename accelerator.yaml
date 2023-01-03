@@ -125,12 +125,27 @@ engine:
               with: "#namespace"
         - type: YTT
     
+    # Modify pom.xml artifactID, name + java version.
+    - include: ["pom.xml"]
+      chain:
+        - type: OpenRewriteRecipe
+          recipe: org.openrewrite.maven.ChangePackaging # org.openrewrite.maven.ChangeDependencyGroupIdAndArtifactId
+          options:
+            artifactId: "#projectName"
+        
+        - type: OpenRewriteRecipe
+          recipe: org.openrewrite.maven.ChangePropertyValue
+          options:
+            key: "java.version"
+            newValue: "#jvmVersion"
+            addIfMissing: "true"
+            trustParent: "false"
+
 
 
 
     # Modify package name + location for java files.
-    # Modify pom.xml artifactID, name + java version.
-    - include: ["**/*.java", "pom.xml"]
+    - include: ["**/*.java"]
       chain:
         - type: RewritePath
           regex: (?<prefix>.*)org.example.app(?<suffix>.*)
@@ -142,6 +157,11 @@ engine:
             oldPackageName: "'org.example.app'"
             newPackageName: "'org.example.' + #newPackageName"
             recursive: true
+        
+        - type: ReplaceText
+          regex:
+            pattern: '<name>app</name>'
+            with: "'<name>' + #projectName + '</name>'"
         
         # - type: OpenRewriteRecipe
         #   recipe: org.openrewrite.maven.ChangePackaging # org.openrewrite.maven.ChangeDependencyGroupIdAndArtifactId
@@ -171,10 +191,7 @@ engine:
         #   regex:
         #     pattern: '<artifactId>app</artifactId>'
         #     with: "'<artifactId>' + #projectName + '</artifactId>'"
-        - type: ReplaceText
-          regex:
-            pattern: '<name>app</name>'
-            with: "'<name>' + #projectName + '</name>'"
+        
         # - type: ReplaceText
         #   regex:
         #     pattern: '<java.version>11</java.version>'
