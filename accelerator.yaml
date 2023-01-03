@@ -25,7 +25,7 @@ accelerator:
       defaultValue: by Cloud Native Applications team.
 
     - name: jvmVersion
-      label: Greeting Description
+      label: JVM Version
       description: JVM Version (Java Virtual Machine).
       inputType: select
       dataType: string
