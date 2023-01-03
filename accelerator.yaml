@@ -100,8 +100,8 @@ engine:
     - include: ["**/*.java"]
       chain:
         - type: RewritePath
-          regex: org.example.app(.*)
-          rewriteTo: "#projectName + #g1" # SpEL expression. You can use '#g1' and '#g2' to reference 'match groups'
+          regex: (?<prefix>.*)org.example.app(?<suffix>.*)
+          rewriteTo: "#prefix + #projectName + #suffix" # SpEL expression. You can use '#g1' and '#g2' to reference 'match groups'
         # - type: ReplaceText
           # substitutions:
           #   - text: org.example.app
