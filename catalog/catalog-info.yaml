@@ -6,7 +6,7 @@ kind: Component
 metadata:
   #@yaml/text-templated-strings
   name: "(@= data.values.projectName @)"
-  namespace: "(@= data.values.projectName @)"
+  namespace: "(@= data.values.namespace @)"
   description: Tanzu Java Spring-Boot Web App, displaying kubernetes info on '/k8s' endpoint. Written by Guy Balmas.
   tags:
     - app-accelerator
@@ -21,10 +21,10 @@ metadata:
     'backstage.io/techdocs-ref': 'dir:.'
   links:
     #@yaml/text-templated-strings
-    - url: "http://(@= data.values.projectName @).apps.tap-guy-lab-p8m8nm3rts18.ts-cna.com"
+    - url: "http://(@= data.values.projectName @).(@= data.values.namespace @).tap-guy-lab-p8m8nm3rts18.ts-cna.com"
       name: Hello-World
     #@yaml/text-templated-strings
-    - url: "http://(@= data.values.projectName @).apps.tap-guy-lab-p8m8nm3rts18.ts-cna.com/k8s"
+    - url: "http://(@= data.values.projectName @).(@= data.values.namespace @).tap-guy-lab-p8m8nm3rts18.ts-cna.com/k8s"
       name: K8S-spec
 spec:
   type: service
