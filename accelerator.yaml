@@ -138,10 +138,10 @@ engine:
             pattern: '<artifactId>app</artifactId>'
             with: "'<artifactId>' + #projectName + '</artifactId>'"
         
-        - type: ReplaceText
-          regex:
-            pattern: '<java.version>11</java.version>'
-            with: "'<java.version>' + #jvmVersion + '</java.version>'"
+        # - type: ReplaceText
+        #   regex:
+        #     pattern: '<java.version>11</java.version>'
+        #     with: "'<java.version>' + #jvmVersion + '</java.version>'"
 
         # - type: OpenRewriteRecipe
         #   recipe: org.openrewrite.maven.ChangePackaging # org.openrewrite.maven.ChangeDependencyGroupIdAndArtifactId
@@ -150,12 +150,12 @@ engine:
         #     artifactId: "#projectName"
         #     packaging: "'jar'"
         
-        # - type: OpenRewriteRecipe
-        #   recipe: org.openrewrite.maven.ChangePropertyValue
-        #   options:
-        #     key: "'java.version'"
-        #     newValue: "#jvmVersion"
-        #     addIfMissing: "true"
+        - type: OpenRewriteRecipe
+          recipe: org.openrewrite.maven.ChangePropertyValue
+          options:
+            key: java.version
+            newValue: "#jvmVersion"
+            addIfMissing: "true"
         
         # - type: ReplaceText
         #   regex:
