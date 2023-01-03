@@ -15,6 +15,7 @@ accelerator:
       inputType: text
       required: true
       defaultValue: Welcome to TAP accelerator demo!
+
     - name: greetingDescription
       label: Greeting Description
       description: Greeting message description displayed by the Hello World app.
@@ -22,6 +23,23 @@ accelerator:
       inputType: text
       required: true
       defaultValue: by Cloud Native Applications team.
+
+    - name: jvmVersion
+      label: Greeting Description
+      description: JVM Version (Java Virtual Machine).
+      inputType: select
+      dataType: string
+      choices:
+      - text: "17"
+        value: 17 
+      - text: "15"
+        value: 15
+      - text: "13"
+        value: 13
+      - text: "11"
+        value: 11
+      defaultValue: 11
+      required: true
     
     - name: enableLiveUpdate
       label: Enable Live Update
@@ -43,8 +61,6 @@ accelerator:
         value: local
       - text: "Specific Cluster"
         value: specificCluster
-      # - text: "Choose Cluster"
-      #   value: choose
       defaultValue: all
       dependsOn:
         name: enableLiveUpdate
