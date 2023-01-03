@@ -138,11 +138,14 @@ engine:
             oldPackageName: "'org.example.app'"
             newPackageName: "'org.example.' + #newPackageName"
             recursive: true
+        
         - type: OpenRewriteRecipe
-          recipe: org.openrewrite.maven.ChangeDependencyGroupIdAndArtifactId
+          recipe: org.openrewrite.maven.ChangePackaging # org.openrewrite.maven.ChangeDependencyGroupIdAndArtifactId
           options:
-            oldArtifactId: "app"
-            newArtifactId: "#projectName"
+            artifactId: "#projectName"
+            # oldArtifactId: "app"
+            # newArtifactId: "#projectName"
+
         - type: OpenRewriteRecipe
           recipe: org.openrewrite.maven.ChangePropertyValue
           options:
