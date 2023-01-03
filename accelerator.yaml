@@ -133,7 +133,7 @@ engine:
           options:
             groupId: "'org.example'"
             artifactId: "#projectName"
-            packaging: jar
+            packaging: "'jar'"
         
         # - type: OpenRewriteRecipe
         #   recipe: org.openrewrite.maven.ChangePropertyValue
