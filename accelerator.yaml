@@ -99,7 +99,7 @@ engine:
   let:
     - name: newPackageName # name of a symbol, must be camelCase
       expression:
-        "CaseFormat.UPPER_UNDERSCORE.to(CaseFormat.LOWER_CAMEL, #projectName.replaceAll('-', '_'))" # "#projectName.replaceAll('-',' ').replaceAll('')" #.replaceFirst(' [a-z]{1}','($1 - 32)').replaceAll(' ','')"
+        "#projectName.replaceAll('-', '_'))" # "#projectName.replaceAll('-',' ').replaceAll('')" #.replaceFirst(' [a-z]{1}','($1 - 32)').replaceAll(' ','')"
         
   merge:   
     # include all, exclude specifically handled files.  
