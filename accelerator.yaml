@@ -96,6 +96,10 @@ accelerator:
         value: specificCluster
 
 engine:
+  let:
+    - name: newPackageName # name of a symbol, must be camelCase
+      expression:
+        "#projectName.replaceAll('-','_')"
   merge:   
     # include all, exclude specifically handled files.  
     - include: ['*/**']
@@ -131,7 +135,7 @@ engine:
           recipe: org.openrewrite.java.ChangePackage
           options:
             oldPackageName: "'org.example.app'"
-            newPackageName: "'org.example.' + #projectName" #"'org.example. + #projectName'"
+            newPackageName: "'org.example.' + #newPackageName"
             recursive: true
 
           # regex:
