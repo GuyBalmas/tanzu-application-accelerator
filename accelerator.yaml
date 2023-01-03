@@ -60,8 +60,8 @@ accelerator:
 
     - name: imageRepo
       inputType: text
-      label: Image Repository name (prefix) for hosting source code image.
-      description: Should only contain the <repo-name> prefix, as the full path pattern will be <repo-name>/<image-name>.
+      label: Source Image Repository
+      description:  Name (prefix) of an image repository for hosting source code image. Should only contain the <repo-name> prefix, as the full path pattern will be <repo-name>/<image-name>.
       defaultValue: "my-image-repo"
       dependsOn:
         name: enableLiveUpdate
