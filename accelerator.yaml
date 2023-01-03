@@ -130,7 +130,7 @@ engine:
         - type: OpenRewriteRecipe
           recipe: org.openrewrite.java.ChangePackage
           options:
-            oldFullyQualifiedPackageName: "org.example.app"
+            oldFullyQualifiedPackageName: "'org.example.app'"
             newFullyQualifiedPackageName: "'org.example.' + #projectName"
             recursive: true
           # regex:
