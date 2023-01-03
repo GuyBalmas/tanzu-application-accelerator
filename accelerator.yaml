@@ -150,12 +150,12 @@ engine:
         #     artifactId: "#projectName"
         #     packaging: "'jar'"
         
-        - type: OpenRewriteRecipe
-          recipe: org.openrewrite.maven.ChangePropertyValue
-          options:
-            key: "'java.version'"
-            newValue: "#jvmVersion"
-            addIfMissing: "true"
+        # - type: OpenRewriteRecipe
+        #   recipe: org.openrewrite.maven.ChangePropertyValue
+        #   options:
+        #     key: "'java.version'"
+        #     newValue: "#jvmVersion"
+        #     addIfMissing: "true"
         
         # - type: ReplaceText
         #   regex:
