@@ -131,8 +131,9 @@ engine:
           recipe: org.openrewrite.java.ChangePackage
           options:
             oldFullyQualifiedPackageName: "'org.example.app'"
-            newFullyQualifiedPackageName: "blah"
+            newFullyQualifiedPackageName: "org.example. + #projectName"
             recursive: true
+
           # regex:
           #   pattern: 'org.example.app'
           #   with: "'org.example.' + #projectName"
