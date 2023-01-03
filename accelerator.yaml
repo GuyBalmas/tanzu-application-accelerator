@@ -145,9 +145,8 @@ engine:
               with: "#projectName"
             - text: "'<k8s-context>'"
               with: "'k8s_context()'"
-          regex:
-            pattern: default=\'default\'
-            with: "'default = ''' + #namespace + ''''" # "'default=''' #namespace ''''"
+            - text: "<default-namespace>"
+              with: "#namespace"
     
     # Add Tiltfile for 'localClusters' option (enabled live update)
     # remove allow_k8s_contexts() from Tiltfile
