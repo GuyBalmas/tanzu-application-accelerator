@@ -156,7 +156,6 @@ engine:
             key: "'java.version'"
             newValue: "#jvmVersion"
             addIfMissing: "true"
-            trustParent: "false"
         
         # - type: ReplaceText
         #   regex:
