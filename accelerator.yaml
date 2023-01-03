@@ -128,6 +128,10 @@ engine:
     # Modify pom.xml artifactID, name + java version.
     - include: ["pom.xml"]
       chain:
+        - type: ReplaceText
+          regex:
+            pattern: '<name>app</name>'
+            with: "'<name>' + #projectName + '</name>'"
         - type: OpenRewriteRecipe
           recipe: org.openrewrite.maven.ChangePackaging # org.openrewrite.maven.ChangeDependencyGroupIdAndArtifactId
           options:
@@ -143,10 +147,10 @@ engine:
         #     addIfMissing: "true"
         #     trustParent: "false"
         
-        - type: ReplaceText
-          regex:
-            pattern: '<name>app</name>'
-            with: "'<name>' + #projectName + '</name>'"
+        # - type: ReplaceText
+        #   regex:
+        #     pattern: '<name>app</name>'
+        #     with: "'<name>' + #projectName + '</name>'"
 
 
 
