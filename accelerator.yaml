@@ -105,7 +105,7 @@ engine:
         - type: ReplaceText
           substitutions:
             - text: org.example.app
-              with: "org.example.#packageName"
+              with: "org.example.#projectName"
     
     - include: ['Tiltfile']
       condition: "#chooseCluster == 'all' and #enableLiveUpdate"
