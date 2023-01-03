@@ -28,17 +28,17 @@ accelerator:
       label: JVM Version
       description: Java Virtual Machine Version.
       inputType: select
-      dataType: number # [string | boolean | number]
+      dataType: string # [string | boolean | number]
       choices:
-      - text: "17"
-        value: 17 
-      - text: "15"
-        value: 15
-      - text: "13"
-        value: 13
-      - text: "11"
-        value: 11
-      defaultValue: 11
+      - text: "Java 17"
+        value: "17" 
+      - text: "Java 15"
+        value: "15"
+      - text: "Java 13"
+        value: "13"
+      - text: "Java 11"
+        value: "11"
+      defaultValue: "11"
       required: true
     
     - name: enableLiveUpdate
