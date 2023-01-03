@@ -78,10 +78,13 @@ accelerator:
         value: specificCluster
 
 engine:
-  merge:     
+  merge:   
+    # include all, exclude specifically handled files.  
     - include: ['*/**']
       exclude: ['Tiltfile', 'config/**', 'catalog/*.yaml', 'target/**', 'docs/**', '.vscode/**', "**/*.java", "pom.xml"]
     
+    # Replace text in values.yaml to template yaml files using YTT.
+    # modify workload environment variables.
     - include: ["config/**", "catalog/*.yaml"]
       exclude: ["catalog/docs/**"]
       chain:
@@ -97,6 +100,8 @@ engine:
               with: "#jvmVersion"
         - type: YTT
     
+    # Modify package name + location for java files.
+    # Modify pom.xml artifact name + java version.
     - include: ["**/*.java", "pom.xml"]
       chain:
         - type: RewritePath
@@ -115,7 +120,8 @@ engine:
             pattern: '<java.version>11</java.version>'
             with: "'<java.version>' + #jvmVersion + '</java.version>'"
           
-    
+    # Add Tiltfile for 'allClusters' option (enabled live update)
+    # inject 'k8s_context()' to target all cluster.
     - include: ['Tiltfile']
       condition: "#chooseCluster == 'all' and #enableLiveUpdate"
       chain:
@@ -126,6 +132,8 @@ engine:
             - text: "'<k8s-context>'"
               with: "'k8s_context()'"
     
+    # Add Tiltfile for 'localClusters' option (enabled live update)
+    # remove allow_k8s_contexts() from Tiltfile
     - include: ['Tiltfile']
       condition: "#chooseCluster == 'local' and #enableLiveUpdate"
       chain:
@@ -136,6 +144,8 @@ engine:
             - text: "allow_k8s_contexts('<k8s-context>')" 
               with: "#clusterContext" # cannot be empty string, bypassing by setting a null var as replacement text
     
+    # Add Tiltfile for 'specificCluster' option (enabled live update)
+    # inject target cluster's context
     - include: ['Tiltfile']
       condition: "#chooseCluster == 'specificCluster' and #enableLiveUpdate"
       chain:
