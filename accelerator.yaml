@@ -113,8 +113,12 @@ engine:
             with: "'org.example.' + #projectName"
         - type: ReplaceText
           regex:
-            pattern: '<(?<prefix>.*)>app<(?<suffix>.*)>'
-            with: "'<' + #prefix + '>' + #projectName + '<' + #suffix + '>'"
+            pattern: '<artifactId>app</artifactId>'
+            with: "'<artifactId>' + #projectName + '</artifactId>'"
+        - type: ReplaceText
+          regex:
+            pattern: '<name>app</name>'
+            with: "'<name>' + #projectName + '</name>'"
         - type: ReplaceText
           regex:
             pattern: '<java.version>11</java.version>'
