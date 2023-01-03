@@ -4,8 +4,6 @@ import org.example.app.color.ColorPicker;
 
 public abstract class HtmlTemplate {
 
-    private static ColorPicker colorPicker;
-
     public static String htmlLandingPage(String header, String description){
         return htmlLandingPage(header, description,"", "");
     }
@@ -20,8 +18,8 @@ public abstract class HtmlTemplate {
                 "<head>\n" +
                 "    <title>Hello World!</title>\n" +
                 "</head>\n" +
-                "<body style=\"background: " + colorPicker.getBackgroundColor() + ";\"></body>\n" +
-                "<div style=\"color: " + colorPicker.getTextColor() + ";\n" +
+                "<body style=\"background: " + ColorPicker.getBackgroundColor() + ";\"></body>\n" +
+                "<div style=\"color: " + ColorPicker.getTextColor() + ";\n" +
                 "\t\t\ttext-align:  center;\n" +
                 "\t\t\theight: 90px;\n" +
                 "\t\t\tvertical-align:  middle;\n" +
