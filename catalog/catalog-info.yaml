@@ -6,7 +6,7 @@ kind: Component
 metadata:
   #@yaml/text-templated-strings
   name: "(@= data.values.projectName @)"
-  namespace: (@= data.values.namespace @)
+  namespace: "(@= data.values.namespace @)"
   description: Tanzu Java Spring-Boot Web App, displaying kubernetes info on '/k8s' endpoint. Written by Guy Balmas.
   tags:
     - app-accelerator
