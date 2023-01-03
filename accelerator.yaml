@@ -104,7 +104,7 @@ engine:
           rewriteTo: "#prefix + #projectName + #suffix" # SpEL expression. You can use '#g1' and '#g2' to reference 'match groups'
         - type: ReplaceText
           regex:
-            pattern: org.example.app
+            pattern: 'org.example.app'
             with: "org.example. + #projectName"
           # substitutions:
           #   - text: "org.example.app"
