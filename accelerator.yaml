@@ -128,10 +128,10 @@ engine:
     # Modify pom.xml artifactID, name + java version.
     - include: ["pom.xml"]
       chain:
-        - type: OpenRewriteRecipe
-          recipe: org.openrewrite.maven.ChangePackaging # org.openrewrite.maven.ChangeDependencyGroupIdAndArtifactId
-          options:
-            artifactId: "#projectName"
+        # - type: OpenRewriteRecipe
+        #   recipe: org.openrewrite.maven.ChangePackaging # org.openrewrite.maven.ChangeDependencyGroupIdAndArtifactId
+        #   options:
+        #     artifactId: "#projectName"
         
         # - type: OpenRewriteRecipe
         #   recipe: org.openrewrite.maven.ChangePropertyValue
