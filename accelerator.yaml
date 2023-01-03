@@ -133,13 +133,13 @@ engine:
           options:
             artifactId: "#projectName"
         
-        - type: OpenRewriteRecipe
-          recipe: org.openrewrite.maven.ChangePropertyValue
-          options:
-            key: 'java.version'
-            newValue: "#jvmVersion"
-            addIfMissing: "true"
-            trustParent: "false"
+        # - type: OpenRewriteRecipe
+        #   recipe: org.openrewrite.maven.ChangePropertyValue
+        #   options:
+        #     key: 'java.version'
+        #     newValue: "#jvmVersion"
+        #     addIfMissing: "true"
+        #     trustParent: "false"
         
         - type: ReplaceText
           regex:
