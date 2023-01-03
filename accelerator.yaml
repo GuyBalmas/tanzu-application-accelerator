@@ -101,7 +101,7 @@ engine:
       chain:
         - type: RewritePath
           regex: org.example.app(.*)
-          rewriteTo: "org.example.#projectName + #g1" # SpEL expression. You can use '#g1' and '#g2' to reference 'match groups'
+          rewriteTo: "org.example. + #projectName + #g1" # SpEL expression. You can use '#g1' and '#g2' to reference 'match groups'
         - type: ReplaceText
           # substitutions:
           #   - text: org.example.app
