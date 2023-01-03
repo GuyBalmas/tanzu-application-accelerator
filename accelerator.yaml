@@ -99,7 +99,7 @@ engine:
   let:
     - name: newPackageName # name of a symbol, must be camelCase
       expression:
-        "#projectName.replaceAll('-', '_')" # "#projectName.replaceAll('-',' ').replaceAll('')" #.replaceFirst(' [a-z]{1}','($1 - 32)').replaceAll(' ','')"
+        "#projectName.replaceAll('-', '_')" 
         
   merge:   
     # include all, exclude specifically handled files.  
@@ -119,14 +119,14 @@ engine:
               with: "#greetingDescription"
             - text: "default-project-name"
               with: "#projectName"
-            - text: "default-java-version"
+            - text: "default-java-version"    # workload
               with: "#jvmVersion"
             - text: default-apps-namespace
               with: "#namespace"
         - type: YTT
     
     # Modify package name + location for java files.
-    # Modify pom.xml artifact name + java version.
+    # Modify pom.xml artifactID, name + java version.
     - include: ["**/*.java", "pom.xml"]
       chain:
         - type: RewritePath
@@ -138,22 +138,39 @@ engine:
             oldPackageName: "'org.example.app'"
             newPackageName: "'org.example.' + #newPackageName"
             recursive: true
+        - type: OpenRewriteRecipe
+          recipe: org.openrewrite.maven.ChangeDependencyGroupIdAndArtifactId
+          options:
+            oldArtifactId: app
+            newArtifactId: #projectName
+        - type: OpenRewriteRecipe
+          recipe: org.openrewrite.maven.ChangePropertyValue
+          options:
+            key: java.version
+            newValue: #jvmVersion
+            addIfMissing: true
+            trustParent: false
 
-          # regex:
-          #   pattern: 'org.example.app'
-          #   with: "'org.example.' + #projectName"
-        - type: ReplaceText
-          regex:
-            pattern: '<artifactId>app</artifactId>'
-            with: "'<artifactId>' + #projectName + '</artifactId>'"
+
+
+            # oldGroupId: org.openrewrite.recipe
+            # newGroupId: corp.internal.openrewrite.recipe
+            # newVersion: 29.X
+            # versionPattern: '-jre'
+            # overrideManagedVersion: false
+            
+        # - type: ReplaceText
+        #   regex:
+        #     pattern: '<artifactId>app</artifactId>'
+        #     with: "'<artifactId>' + #projectName + '</artifactId>'"
         - type: ReplaceText
           regex:
             pattern: '<name>app</name>'
             with: "'<name>' + #projectName + '</name>'"
-        - type: ReplaceText
-          regex:
-            pattern: '<java.version>11</java.version>'
-            with: "'<java.version>' + #jvmVersion + '</java.version>'"
+        # - type: ReplaceText
+        #   regex:
+        #     pattern: '<java.version>11</java.version>'
+        #     with: "'<java.version>' + #jvmVersion + '</java.version>'"
           
     # Add Tiltfile for 'allClusters' option (enabled live update)
     # inject 'k8s_context()' to target all cluster.
