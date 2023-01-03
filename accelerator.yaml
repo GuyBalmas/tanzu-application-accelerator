@@ -125,6 +125,9 @@ engine:
               with: "#namespace"
         - type: YTT
     
+
+
+
     # Modify package name + location for java files.
     # Modify pom.xml artifactID, name + java version.
     - include: ["**/*.java", "pom.xml"]
@@ -132,6 +135,12 @@ engine:
         - type: RewritePath
           regex: (?<prefix>.*)org.example.app(?<suffix>.*)
           rewriteTo: "#prefix + #projectName + #suffix" # SpEL expression. You can use '#g1' and '#g2' to reference 'match groups'
+        
+        - type: OpenRewriteRecipe
+          recipe: org.openrewrite.maven.ChangePackaging # org.openrewrite.maven.ChangeDependencyGroupIdAndArtifactId
+          options:
+            artifactId: "#projectName"
+        
         - type: OpenRewriteRecipe
           recipe: org.openrewrite.java.ChangePackage
           options:
@@ -139,10 +148,7 @@ engine:
             newPackageName: "'org.example.' + #newPackageName"
             recursive: true
         
-        - type: OpenRewriteRecipe
-          recipe: org.openrewrite.maven.ChangePackaging # org.openrewrite.maven.ChangeDependencyGroupIdAndArtifactId
-          options:
-            artifactId: "#projectName"
+        
             # oldArtifactId: "app"
             # newArtifactId: "#projectName"
 
