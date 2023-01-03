@@ -15,6 +15,7 @@ accelerator:
       inputType: text
       required: true
       defaultValue: apps
+      validationRegex: "^[a-z0-9-]+$"
 
     - name: greetingMessage
       label: Greeting Message
@@ -56,6 +57,15 @@ accelerator:
       dataType: boolean
       required: true
       defaultValue: false
+
+    - name: imageRepo
+      inputType: text
+      label: Image Repository name (prefix) for hosting source code image.
+      description: Should only contain the <repo-name> prefix, as the full path pattern will be <repo-name>/<image-name>.
+      defaultValue: "my-image-repo"
+      dependsOn:
+        name: enableLiveUpdate
+      rewuired: true
 
     - name: chooseCluster
       label: Choose Cluster
@@ -147,6 +157,8 @@ engine:
               with: "'k8s_context()'"
             - text: "<default-namespace>"
               with: "#namespace"
+            - text: "<default-image-repo-name>"
+              with: "#imageRepo"
     
     # Add Tiltfile for 'localClusters' option (enabled live update)
     # remove allow_k8s_contexts() from Tiltfile
@@ -159,9 +171,10 @@ engine:
               with: "#projectName"
             - text: "allow_k8s_contexts('<k8s-context>')" 
               with: "#clusterContext" # cannot be empty string, bypassing by setting a null var as replacement text
-          # regex:
-          #   pattern: default='default'
-          #   with: "'default=' + ''' + #namespace + '''"
+            - text: "<default-namespace>"
+              with: "#namespace"
+            - text: "<default-image-repo-name>"
+              with: "#imageRepo"
     
     # Add Tiltfile for 'specificCluster' option (enabled live update)
     # inject target cluster's context
@@ -174,9 +187,10 @@ engine:
               with: "#projectName"
             - text: "<k8s-context>"
               with: "#clusterContext"
-          # regex:
-          #   pattern: default='default'
-          #   with: "'default=' + ''' + #namespace + '''"
+            - text: "<default-namespace>"
+              with: "#namespace"
+            - text: "<default-image-repo-name>"
+              with: "#imageRepo"
             
   # # onConflict: UseFirst
     

@@ -1,4 +1,4 @@
-SOURCE_IMAGE = os.getenv("SOURCE_IMAGE", 'guybalmas/<default-project-name>-source')
+SOURCE_IMAGE = os.getenv("SOURCE_IMAGE", '<default-image-repo-name>/<default-project-name>-source')
 LOCAL_PATH = os.getenv("LOCAL_PATH", default='.')
 NAMESPACE = os.getenv("NAMESPACE", default='<default-namespace>')
 OUTPUT_TO_NULL_COMMAND = os.getenv("OUTPUT_TO_NULL_COMMAND", default=' > /dev/null ')
