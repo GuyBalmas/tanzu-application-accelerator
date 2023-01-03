@@ -62,7 +62,7 @@
 	<build>
 		<plugins>
 			<!-- rewrite package name -->
-			<plugin>
+			<!-- <plugin>
 				<groupId>org.openrewrite.maven</groupId>
 				<artifactId>rewrite-maven-plugin</artifactId>
 				<version>4.38.0</version>
@@ -71,7 +71,7 @@
 						<recipe>org.openrewrite.java.ChangePackage</recipe>
 					</activeRecipes>
 				</configuration>
-			</plugin>
+			</plugin> -->
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
