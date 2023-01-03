@@ -145,9 +145,9 @@ engine:
               with: "#projectName"
             - text: "'<k8s-context>'"
               with: "'k8s_context()'"
-          regex:
-            pattern: default='default'
-            with: "'default=' + ''' + #namespace + '''"
+          # regex:
+          #   pattern: default='default'
+          #   with: "'default=' + ''' + #namespace + '''"
     
     # Add Tiltfile for 'localClusters' option (enabled live update)
     # remove allow_k8s_contexts() from Tiltfile
@@ -160,9 +160,9 @@ engine:
               with: "#projectName"
             - text: "allow_k8s_contexts('<k8s-context>')" 
               with: "#clusterContext" # cannot be empty string, bypassing by setting a null var as replacement text
-          regex:
-            pattern: default='default'
-            with: "'default=' + ''' + #namespace + '''"
+          # regex:
+          #   pattern: default='default'
+          #   with: "'default=' + ''' + #namespace + '''"
     
     # Add Tiltfile for 'specificCluster' option (enabled live update)
     # inject target cluster's context
@@ -175,9 +175,9 @@ engine:
               with: "#projectName"
             - text: "<k8s-context>"
               with: "#clusterContext"
-          regex:
-            pattern: default='default'
-            with: "'default=' + ''' + #namespace + '''"
+          # regex:
+          #   pattern: default='default'
+          #   with: "'default=' + ''' + #namespace + '''"
             
   # # onConflict: UseFirst
     
