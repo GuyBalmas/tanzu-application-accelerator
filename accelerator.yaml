@@ -105,7 +105,7 @@ engine:
         - type: ReplaceText
           regex:
             pattern: org.example.app
-            with: "org.example.#projectName"
+            with: "org.example. + #projectName"
           # substitutions:
           #   - text: "org.example.app"
           #     with: "org.example.#projectName"
