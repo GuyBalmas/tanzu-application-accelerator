@@ -28,7 +28,7 @@ accelerator:
       label: JVM Version
       description: Java Virtual Machine Version.
       inputType: select
-      dataType: integer
+      dataType: number # [string | boolean | number]
       choices:
       - text: "17"
         value: 17 
