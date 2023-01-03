@@ -136,10 +136,15 @@ engine:
         - type: OpenRewriteRecipe
           recipe: org.openrewrite.maven.ChangePropertyValue
           options:
-            key: "java.version"
+            key: 'java.version'
             newValue: "#jvmVersion"
             addIfMissing: "true"
             trustParent: "false"
+        
+        - type: ReplaceText
+          regex:
+            pattern: '<name>app</name>'
+            with: "'<name>' + #projectName + '</name>'"
 
 
 
@@ -158,10 +163,10 @@ engine:
             newPackageName: "'org.example.' + #newPackageName"
             recursive: true
         
-        - type: ReplaceText
-          regex:
-            pattern: '<name>app</name>'
-            with: "'<name>' + #projectName + '</name>'"
+        # - type: ReplaceText
+        #   regex:
+        #     pattern: '<name>app</name>'
+        #     with: "'<name>' + #projectName + '</name>'"
         
         # - type: OpenRewriteRecipe
         #   recipe: org.openrewrite.maven.ChangePackaging # org.openrewrite.maven.ChangeDependencyGroupIdAndArtifactId
