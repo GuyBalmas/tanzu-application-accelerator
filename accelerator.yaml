@@ -103,9 +103,9 @@ engine:
           regex: org.example.app(.*)
           rewriteTo: "org.example.#projectName + #g1" # SpEL expression. You can use '#g1' and '#g2' to reference 'match groups'
         - type: ReplaceText
-          substitutions:
-            - text: org.example.app
-              with: "org.example.#projectName"
+          # substitutions:
+          #   - text: org.example.app
+          #     with: "org.example.#projectName"
     
     - include: ['Tiltfile']
       condition: "#chooseCluster == 'all' and #enableLiveUpdate"
