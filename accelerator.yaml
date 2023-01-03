@@ -141,15 +141,15 @@ engine:
         - type: OpenRewriteRecipe
           recipe: org.openrewrite.maven.ChangeDependencyGroupIdAndArtifactId
           options:
-            oldArtifactId: app
-            newArtifactId: #projectName
+            oldArtifactId: "app"
+            newArtifactId: "#projectName"
         - type: OpenRewriteRecipe
           recipe: org.openrewrite.maven.ChangePropertyValue
           options:
-            key: java.version
-            newValue: #jvmVersion
-            addIfMissing: true
-            trustParent: false
+            key: "java.version"
+            newValue: "#jvmVersion"
+            addIfMissing: "true"
+            trustParent: "false"
 
 
 
