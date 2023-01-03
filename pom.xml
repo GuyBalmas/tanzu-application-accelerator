@@ -9,13 +9,13 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.example</groupId>
-	<artifactId>demo</artifactId>
+	<artifactId>app</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>demo</name>
-	<description>Demo project for Spring Boot</description>
+	<name>app</name>
+	<description>Tanzu Java Spring-Boot Web App, displaying kubernetes info.</description>
 
 	<properties>
-		<java.version>8</java.version>
+		<java.version>11</java.version>
 		<snakeyaml.version>1.32</snakeyaml.version>
 	</properties>
 
