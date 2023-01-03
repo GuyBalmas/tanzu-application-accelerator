@@ -26,7 +26,7 @@ accelerator:
 
     - name: jvmVersion
       label: JVM Version
-      description: JVM Version (Java Virtual Machine).
+      description: Java Virtual Machine Version.
       inputType: select
       dataType: integer
       choices:
@@ -80,7 +80,7 @@ accelerator:
 engine:
   merge:     
     - include: ['*/**']
-      exclude: ['Tiltfile', 'config/**', 'catalog/*.yaml', 'target/**', 'docs/**', '.vscode/**']
+      exclude: ['Tiltfile', 'config/**', 'catalog/*.yaml', 'target/**', 'docs/**', '.vscode/**', "**/*.java"]
     
     - include: ["config/**", "catalog/*.yaml"]
       exclude: ["catalog/docs/**"]
@@ -93,7 +93,19 @@ engine:
               with: "#greetingDescription"
             - text: "default-project-name"
               with: "#projectName"
+            - text: "default-java-version"
+              with: "#jvmVersion"
         - type: YTT
+    
+    - include: ["**/*.java"]
+      chain:
+        - type: RewritePath
+          regex: (org.example.)app(.*)
+          rewriteTo: "#g1 + #projectName + #g2" # SpEL expression. You can use '#g1' and '#g2' to reference 'match groups'
+        - type: ReplaceText
+          substitutions:
+            - text: org.example.app
+              with: "org.example.#packageName"
     
     - include: ['Tiltfile']
       condition: "#chooseCluster == 'all' and #enableLiveUpdate"
