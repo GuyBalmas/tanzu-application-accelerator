@@ -99,7 +99,7 @@ engine:
   let:
     - name: newPackageName # name of a symbol, must be camelCase
       expression:
-        "#projectName.replaceAll('-','_')"
+        "#projectName.replaceAll('-','_').replaceAll('_[a-z]','_[A-Z]')"
   merge:   
     # include all, exclude specifically handled files.  
     - include: ['*/**']
