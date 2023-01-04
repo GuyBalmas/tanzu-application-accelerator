@@ -14,7 +14,7 @@ accelerator:
 
 engine:
   let:
-    - name: newPackageName # name of a symbol, must be camelCase
+    - name: formattedProjectName # name of a symbol, must be camelCase
       expression:
         "#projectName.replaceAll('-', '_')" 
   merge:
@@ -23,12 +23,12 @@ engine:
       chain:
         - type: RewritePath
           regex: (?<prefix>.*)org.example.app(?<suffix>.*)
-          rewriteTo: "#prefix + #packageName + '.' + #projectName + #suffix" # SpEL expression. You can use '#g1' and '#g2' to reference 'match groups'
+          rewriteTo: "#prefix + #packageName + '.' + #formattedProjectName + #suffix" # SpEL expression. You can use '#g1' and '#g2' to reference 'match groups'
         
         - type: OpenRewriteRecipe
           recipe: org.openrewrite.java.ChangePackage
           options:
             oldPackageName: "'org.example.app'"
-            newPackageName: "#packageName + '.' + #newPackageName"
+            newPackageName: "#packageName + '.' + #formattedProjectName"
             recursive: true
           
