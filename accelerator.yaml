@@ -158,6 +158,7 @@ engine:
         #     artifactId: "#projectName"
         #     packaging: "'jar'"
         
+        
         # - type: OpenRewriteRecipe
         #   recipe: org.openrewrite.maven.ChangePropertyValue
         #   options:
