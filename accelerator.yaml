@@ -8,6 +8,16 @@ accelerator:
   - Spring-Boot
 
   options: # a list of options
+    
+    - name: projectName
+      label: Name
+      description: Provide a name for your new project.
+      dataType: string
+      inputType: text
+      required: true
+      defaultValue: my-java-app
+      validationRegex: "^[a-z0-9-]+$"
+    
     - name: namespace
       label: Namespace
       description: Application's namespace to deploy to.
@@ -100,9 +110,6 @@ engine:
     - name: newPackageName # name of a symbol, must be camelCase
       expression:
         "#projectName.replaceAll('-', '_')" 
-    - name: javaVersion
-      expression:
-        "java.version"
         
   merge:   
     # include all, exclude specifically handled files.  
@@ -116,15 +123,15 @@ engine:
       chain:
         - type: ReplaceText
           substitutions:
-            - text: "default-greeting-message"
+            - text: "default-greeting-message"      # workload env var
               with: "#greetingMessage"
-            - text: "default-greeting-description"
+            - text: "default-greeting-description"  # workload env var
               with: "#greetingDescription"
-            - text: "default-project-name"
+            - text: "default-project-name"          # workload 
               with: "#projectName"
-            - text: "default-java-version"    # workload
+            - text: "default-java-version"          # workload env var
               with: "#jvmVersion"
-            - text: default-apps-namespace
+            - text: default-apps-namespace          # catalog-info @TODO: change 
               with: "#namespace"
         - type: YTT
     
@@ -135,16 +142,14 @@ engine:
           regex:
             pattern: '<name>app</name>'
             with: "'<name>' + #projectName + '</name>'"
-        
         - type: ReplaceText
           regex:
             pattern: '<artifactId>app</artifactId>'
             with: "'<artifactId>' + #projectName + '</artifactId>'"
-        
-        # - type: ReplaceText
-        #   regex:
-        #     pattern: '<java.version>11</java.version>'
-        #     with: "'<java.version>' + #jvmVersion + '</java.version>'"
+        - type: ReplaceText
+          regex:
+            pattern: '<java.version>11</java.version>'
+            with: "'<java.version>' + #jvmVersion + '</java.version>'"
 
         # - type: OpenRewriteRecipe
         #   recipe: org.openrewrite.maven.ChangePackaging # org.openrewrite.maven.ChangeDependencyGroupIdAndArtifactId
@@ -154,12 +159,12 @@ engine:
         #     packaging: "'jar'"
         
         
-        - type: OpenRewriteRecipe
-          recipe: org.openrewrite.maven.ChangePropertyValue
-          options:
-            key: "#javaVersion"
-            newValue: "#jvmVersion"
-            addIfMissing: "true"
+        # - type: OpenRewriteRecipe
+        #   recipe: org.openrewrite.maven.ChangePropertyValue
+        #   options:
+        #     key: "java.version"
+        #     newValue: "#jvmVersion"
+        #     addIfMissing: "true"
         
         # - type: ReplaceText
         #   regex:
