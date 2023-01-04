@@ -1,11 +1,12 @@
 apiVersion: accelerator.apps.tanzu.vmware.com/v1alpha1
 kind: Fragment
 metadata:
-  name: enable-live-update-fragment-test
+  name: enable-live-update-fragment
   namespace: accelerator-system
 spec:
   displayName: Enables Live Update & Live Debug features
   git:
     url: https://github.com/GuyBalmas/tanzu-application-accelerator.git
     subPath: fragments/enable-live-update
-    branch: main
+    ref:
+      branch: main

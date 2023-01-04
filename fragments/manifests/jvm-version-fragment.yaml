@@ -8,3 +8,5 @@ spec:
   git:
     url: https://github.com/GuyBalmas/tanzu-application-accelerator.git
     subPath: fragments/jvm-version
+    ref:
+      branch: main
