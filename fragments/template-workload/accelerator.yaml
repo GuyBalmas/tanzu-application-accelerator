@@ -54,7 +54,7 @@ engine:
             - text: "default-project-name"          # workload 
               with: "#projectName"
             - text: "default-java-version"          # workload env var
-              with: "#jvmWorkloadPatch"
+              with: "#jvmVersion"
             # - text: default-apps-namespace          # workload
             #   with: "#namespace"
         - type: YTT
