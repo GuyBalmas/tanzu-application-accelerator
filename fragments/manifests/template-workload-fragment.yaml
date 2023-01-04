@@ -1,12 +1,12 @@
 apiVersion: accelerator.apps.tanzu.vmware.com/v1alpha1
 kind: Fragment
 metadata:
-  name: template-workload-fragment-fragment
+  name: template-workload-fragment
   namespace: accelerator-system
 spec:
   displayName: Template workload.yaml
   git:
     url: https://github.com/GuyBalmas/tanzu-application-accelerator.git
-    subPath: fragments/template-workload-fragment
+    subPath: fragments/template-workload
     ref:
       branch: main
