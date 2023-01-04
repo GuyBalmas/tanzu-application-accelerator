@@ -21,4 +21,20 @@ apply
 ```bash
 tanzu accelerator apply -f ./java-version.yaml
 
+tanzu accelerator apply -f ./fragments/manifests/enable-live-update-fragment.yaml
+tanzu accelerator apply -f ./fragments/manifests/java-rename-app-fragment.yaml
+tanzu accelerator apply -f ./fragments/manifests/java-rewrite-package-fragment.yaml
+tanzu accelerator apply -f ./fragments/manifests/jvm-version-fragment.yaml
+tanzu accelerator apply -f ./fragments/manifests/template-catalog-info-fragment.yaml
+tanzu accelerator apply -f ./fragments/manifests/template-workload-fragment.yaml
+
+tanzu accelerator delete -f ./fragments/manifests/enable-live-update-fragment.yaml
+tanzu accelerator delete -f ./fragments/manifests/java-rename-app-fragment.yaml
+tanzu accelerator delete -f ./fragments/manifests/java-rewrite-package-fragment.yaml
+tanzu accelerator delete -f ./fragments/manifests/jvm-version-fragment.yaml
+tanzu accelerator delete -f ./fragments/manifests/template-catalog-info-fragment.yaml
+tanzu accelerator delete -f ./fragments/manifests/template-workload-fragment.yaml
+
 ```
+
+tanzu accelerator update my-simple-acc --reconcile

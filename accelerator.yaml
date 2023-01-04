@@ -137,7 +137,7 @@ engine:
   merge:   
     # include all, exclude specifically handled files.  
     - include: ['*/**']
-      exclude: ['Tiltfile', 'config/**', 'catalog/*.yaml', 'target/**', 'docs/**', '.vscode/**', "**/*.java", "pom.xml"]
+      exclude: ['Tiltfile', 'config/**', 'catalog/*.yaml', 'target/**', 'docs/**', '.vscode/**', "**/*.java", "pom.xml", "fragments"]
     
     - include: ["*/**.java"]
       chain:
@@ -152,14 +152,14 @@ engine:
             - name: jvmVersion
               expression: "#jvmVersion"
 
-    # - include: ["catalog/**", "config/values.yaml"]
-    #   exclude: ["catalog/docs/**"]
-    #   chain:
-    #     type: InvokeFragment
-    #     reference: template-catalog-info-fragment
-    #     let: 
-    #       - name: namespace
-    #         expression: "#namespace" 
+    - include: ["catalog/**", "config/values.yaml"]
+      exclude: ["catalog/docs/**"]
+      chain:
+        type: InvokeFragment
+        reference: template-catalog-info-fragment
+        let: 
+          - name: namespace
+            expression: "#namespace" 
 
     - include: ["Tiltfile"]
       chain:
