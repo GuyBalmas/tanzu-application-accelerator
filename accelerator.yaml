@@ -85,14 +85,14 @@ engine:
             - name: jvmVersion
               expression: "#jvmVersion"
 
-    - include: ["catalog/*.yaml", "config/values.yaml"]
-      # exclude: ["catalog/docs/**"]
-      chain:
-        type: InvokeFragment
-        reference: template-catalog-info-fragment
-        let: 
-          - name: namespace
-            expression: "#namespace" 
+    # - include: ["catalog/*.yaml", "config/values.yaml"]
+    #   # exclude: ["catalog/docs/**"]
+    #   chain:
+    #     type: InvokeFragment
+    #     reference: template-catalog-info-fragment
+    #     let: 
+    #       - name: namespace
+    #         expression: "#namespace" 
 
     - include: ["Tiltfile"]
       chain:
