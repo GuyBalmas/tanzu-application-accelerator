@@ -28,17 +28,17 @@ accelerator:
 engine:
   let:
   - name: jvmWorkloadPatch
-    expression: "#jvmVersion == '1.8' ? '8' : #jvmVersion"
+    expression: "#jvmVersion == '1.8' ? '8' : #jvmVersion"    # NOT WORKING
   
   merge:
     # Modify workload.yaml java version environment variable.
     - include: ["config/*.yaml"]
       chain:
-        # - type: OpenRewriteRecipe
-        #   recipe: org.openrewrite.yaml.ChangeValue
-        #   options:
-        #     oldKeyPath: '"$.spec.build.env[?(@.name == ''BP_JVM_VERSION'')].value"'
-        #     value: "#jvmWorkloadPatch"
+        - type: OpenRewriteRecipe
+          recipe: org.openrewrite.yaml.ChangeValue
+          options:
+            oldKeyPath: '"$.spec.build.env[?(@.name == ''BP_JVM_VERSION'')].value"'
+            value: "#jvmVersion" # "#jvmWorkloadPatch"
 
         - type: ReplaceText
           substitutions:
@@ -48,8 +48,8 @@ engine:
               with: "#greetingDescription"
             - text: "default-project-name"          # workload 
               with: "#projectName"
-            - text: "default-java-version"          # workload env var
-              with: "#jvmWorkloadPatch"
+            # - text: "default-java-version"          # workload env var
+            #   with: "#jvmWorkloadPatch"
             # - text: default-apps-namespace          # workload
             #   with: "#namespace"
         - type: YTT
