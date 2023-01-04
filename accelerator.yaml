@@ -84,13 +84,13 @@ engine:
         - type: InvokeFragment
           reference: java-rename-app-fragment
           
-    # - include: [config/**]
-    #   chain:
-    #     - type: InvokeFragment
-    #       reference: template-workload-fragment
-    #       let:
-    #         - name: jvmVersion
-    #           expression: "#jvmVersion"
+    - include: [config/**]
+      chain:
+        - type: InvokeFragment
+          reference: template-workload-fragment
+          let:
+            - name: jvmVersion
+              expression: "#jvmVersion"
 
     # - include: ["catalog/*.yaml", "config/values.yaml"]
     #   # exclude: ["catalog/docs/**"]
