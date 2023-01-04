@@ -172,8 +172,6 @@ engine:
         #     with: "'<name>' + #projectName + '</name>'"
 
 
-
-
     # Modify package name + location for java files.
     - include: ["**/*.java"]
       chain:
