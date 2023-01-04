@@ -3,5 +3,5 @@
 greetingMsg: default-greeting-message
 greetingDesc: default-greeting-description
 projectName: default-project-name
-# jvmVersion: default-java-version
+jvmVersion: default-java-version
 namespace: default-apps-namespace
