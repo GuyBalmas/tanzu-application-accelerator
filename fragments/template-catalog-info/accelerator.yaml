@@ -3,19 +3,19 @@ accelerator:
     
 engine:
   let:
-  - name: jvmWorkloadPatch
+  - name: jvmCatalogPatch
     expression: "#jvmVersion == '1.8' ? '8' : #jvmVersion"
   
   merge:
     # Modify catalog-info.yaml
-    - include: ["catalog/*.yaml", "config/values.yaml"]
+    - include: ["catalog/*.yaml"]
       # exclude: ["catalog/docs/**"]
       chain:
         # - type: OpenRewriteRecipe
         #   recipe: org.openrewrite.yaml.ChangeValue
         #   options:
         #     oldKeyPath: '"$.spec.build.env[?(@.name == ''BP_JVM_VERSION'')].value"'
-        #     value: "#jvmWorkloadPatch"
+        #     value: "#jvmCatalogPatch"
 
         - type: ReplaceText
           substitutions:

@@ -40,11 +40,6 @@ engine:
         #     oldKeyPath: '"$.spec.build.env[?(@.name == ''BP_JVM_VERSION'')].value"'
         #     value: "#jvmWorkloadPatch"
 
-        # - type: Replacetext
-        #   substitutions:
-        #     - text: "default-java-version"          # workload env var
-        #       with: "#jvmVersion"
-        
         - type: ReplaceText
           substitutions:
             - text: "default-greeting-message"      # workload env var
