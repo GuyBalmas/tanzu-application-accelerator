@@ -18,146 +18,223 @@ accelerator:
       defaultValue: my-java-app
       validationRegex: "^[a-z0-9-]+$"
     
-    - name: namespace
-      label: Namespace
-      description: Application's namespace to deploy to.
-      dataType: string
-      inputType: text
-      required: true
-      defaultValue: apps
-      validationRegex: "^[a-z0-9-]+$"
+    # - name: namespace
+    #   label: Namespace
+    #   description: Application's namespace to deploy to.
+    #   dataType: string
+    #   inputType: text
+    #   required: true
+    #   defaultValue: apps
+    #   validationRegex: "^[a-z0-9-]+$"
 
-    - name: greetingMessage
-      label: Greeting Message
-      description: Greeting message displayed by the Hello World app.
-      dataType: string
-      inputType: text
-      required: true
-      defaultValue: Welcome to TAP accelerator demo!
+    # - name: greetingMessage
+    #   label: Greeting Message
+    #   description: Greeting message displayed by the Hello World app.
+    #   dataType: string
+    #   inputType: text
+    #   required: true
+    #   defaultValue: Welcome to TAP accelerator demo!
 
-    - name: greetingDescription
-      label: Greeting Description
-      description: Greeting message description displayed by the Hello World app.
-      dataType: string
-      inputType: text
-      required: true
-      defaultValue: by Cloud Native Applications team.
+    # - name: greetingDescription
+    #   label: Greeting Description
+    #   description: Greeting message description displayed by the Hello World app.
+    #   dataType: string
+    #   inputType: text
+    #   required: true
+    #   defaultValue: by Cloud Native Applications team.
 
-    - name: jvmVersion
-      label: JVM Version
-      description: Java Virtual Machine Version.
-      inputType: select
-      dataType: string # [string | boolean | number]
-      choices:
-      - text: "Java 17"
-        value: "17" 
-      - text: "Java 15"
-        value: "15"
-      - text: "Java 13"
-        value: "13"
-      - text: "Java 11"
-        value: "11"
-      defaultValue: "11"
-      required: true
+  imports:
+    - name: template-workload-fragment
+      expose:
+        - name: namespace
+        - name: greetingMessage
+        - name: greetingDescription
+
+    - name: template-catalog-info-fragment
+
+    - name: jvm-version-fragment
+      expose:
+        - name: jvmVersion
     
-    - name: enableLiveUpdate
-      label: Enable Live Update
-      description: Enables Live Update & Live Debug features
-      inputType: checkbox
-      dataType: boolean
-      required: true
-      defaultValue: false
+    - name: java-rewrite-package-fragment
+      expose: 
+        - name: packageName
 
-    - name: imageRepo
-      inputType: text
-      label: Source Image Repository
-      description:  Name (prefix) of an image repository for hosting source code image. Should only contain the <repo-name> prefix, as the full path pattern will be <repo-name>/<image-name>.
-      defaultValue: "my-image-repo"
-      dependsOn:
-        name: enableLiveUpdate
-      rewuired: true
+    - name: java-rename-app-fragment
 
-    - name: chooseCluster
-      label: Choose Cluster
-      description: Choose which clusters to auto-configure for the project, or specify a custom context of a specific cluster.
-      inputType: select
-      dataType: string
-      choices:
-      - text: "All Clusters"
-        value: all 
-      - text: "Only Local Clusters"
-        value: local
-      - text: "Specific Cluster"
-        value: specificCluster
-      defaultValue: all
-      dependsOn:
-        name: enableLiveUpdate
-      required: true
+    - name: enable-live-update-fragment
+      expose: 
+        - name: "*"
+    
+    # - name: jvmVersion
+    #   label: JVM Version
+    #   description: Java Virtual Machine Version.
+    #   inputType: select
+    #   dataType: string # [string | boolean | number]
+    #   choices:
+    #   - text: "Java 17"
+    #     value: "17" 
+    #   - text: "Java 15"
+    #     value: "15"
+    #   - text: "Java 13"
+    #     value: "13"
+    #   - text: "Java 11"
+    #     value: "11"
+    #   defaultValue: "11"
+    #   required: true
+    
+    # - name: enableLiveUpdate
+    #   label: Enable Live Update
+    #   description: Enables Live Update & Live Debug features
+    #   inputType: checkbox
+    #   dataType: boolean
+    #   required: true
+    #   defaultValue: false
 
-    - name: clusterContext
-      label: Cluster Context
-      description: Specify the cluster's context
-      dataType: string
-      inputType: text
-      required: true
-      defaultValue: ""
-      dependsOn: 
-        name: chooseCluster
-        value: specificCluster
+    # - name: imageRepo
+    #   inputType: text
+    #   label: Source Image Repository
+    #   description:  Name (prefix) of an image repository for hosting source code image. Should only contain the <repo-name> prefix, as the full path pattern will be <repo-name>/<image-name>.
+    #   defaultValue: "my-image-repo"
+    #   dependsOn:
+    #     name: enableLiveUpdate
+    #   rewuired: true
+
+    # - name: chooseCluster
+    #   label: Choose Cluster
+    #   description: Choose which clusters to auto-configure for the project, or specify a custom context of a specific cluster.
+    #   inputType: select
+    #   dataType: string
+    #   choices:
+    #   - text: "All Clusters"
+    #     value: all 
+    #   - text: "Only Local Clusters"
+    #     value: local
+    #   - text: "Specific Cluster"
+    #     value: specificCluster
+    #   defaultValue: all
+    #   dependsOn:
+    #     name: enableLiveUpdate
+    #   required: true
+
+    # - name: clusterContext
+    #   label: Cluster Context
+    #   description: Specify the cluster's context
+    #   dataType: string
+    #   inputType: text
+    #   required: true
+    #   defaultValue: ""
+    #   dependsOn: 
+    #     name: chooseCluster
+    #     value: specificCluster
 
 engine:
-  let:
-    - name: newPackageName # name of a symbol, must be camelCase
-      expression:
-        "#projectName.replaceAll('-', '_')" 
+  # let:
+  #   - name: newPackageName # name of a symbol, must be camelCase
+  #     expression:
+  #       "#projectName.replaceAll('-', '_')" 
         
   merge:   
     # include all, exclude specifically handled files.  
     - include: ['*/**']
       exclude: ['Tiltfile', 'config/**', 'catalog/*.yaml', 'target/**', 'docs/**', '.vscode/**', "**/*.java", "pom.xml"]
     
+    - include: ["*/**.java"]
+      chain:
+        - type: InvokeFragment
+          reference: java-rewrite-package-fragment
+    
+    - include: [config/**]
+      chain:
+        - type: InvokeFragment
+          reference: template-workload-fragment
+          let:
+            - name: jvmVersion
+              expression: "#jvmVersion"
+
+    - include: ["catalog/**", "config/values.yaml"]
+      exclude: ["catalog/docs/**"]
+      chain:
+        type: InvokeFragment
+        reference: template-catalog-info-fragment
+        let: 
+          - name: namespace
+            expression: "#namespace" 
+
+    - include: ["Tiltfile"]
+      chain:
+        - type: InvokeFragment
+          reference: enable-live-update-fragment
+          let:
+          - name: namespace
+            expression: "#namespace"
+  
+  onConflict: UseFirst
+
+    
+
+    # - include: ["catalog/*.yaml", "config/values.yaml"]
+    #   exclude: ["catalog/docs/**"]
+    #   chain:
+    #     - type: ReplaceText
+    #       substitutions:
+    #         - text: "default-project-name"          # workload 
+    #           with: "#projectName"
+    #         - text: default-apps-namespace          # catalog-info for url
+    #           with: "#namespace"
+    #     - type: YTT
+
     #-----------------------------------------------------------------------------------------------------------------#
     #                                               YAML Templating                                                   #
     #-----------------------------------------------------------------------------------------------------------------#
 
     # Replace text in values.yaml to template yaml files using YTT.
     # modify workload environment variables.
-    - include: ["config/**", "catalog/*.yaml"]
-      exclude: ["catalog/docs/**"]
-      chain:
-        - type: ReplaceText
-          substitutions:
-            - text: "default-greeting-message"      # workload env var
-              with: "#greetingMessage"
-            - text: "default-greeting-description"  # workload env var
-              with: "#greetingDescription"
-            - text: "default-project-name"          # workload 
-              with: "#projectName"
-            - text: "default-java-version"          # workload env var
-              with: "#jvmVersion"
-            - text: default-apps-namespace          # catalog-info @TODO: change 
-              with: "#namespace"
-        - type: YTT
+    # - include: ["config/**", "catalog/*.yaml", "pom.xml",]
+    #   exclude: ["catalog/docs/**"]
+    #   chain:
+    #     - type: InvokeFragment
+    #       reference: jvm-version-fragment
+
+    #     - type: InvokeFragment
+    #       reference: java-rename-app-fragment
+    #       let:
+    #       - name: packageName
+    #         expression: "#packageName"
+        
+    #     - type: ReplaceText
+    #       substitutions:
+    #         - text: "default-greeting-message"      # workload env var
+    #           with: "#greetingMessage"
+    #         - text: "default-greeting-description"  # workload env var
+    #           with: "#greetingDescription"
+    #         - text: "default-project-name"          # workload 
+    #           with: "#projectName"
+    #         # - text: "default-java-version"          # workload env var
+    #         #   with: "#jvmVersion"
+    #         - text: default-apps-namespace          # catalog-info for url
+    #           with: "#namespace"
+    #     - type: YTT
     
     #-----------------------------------------------------------------------------------------------------------------#
     #                                               Maven Templating                                                  #
     #-----------------------------------------------------------------------------------------------------------------#
 
     # Modify pom.xml artifactID, name + java version.
-    - include: ["pom.xml"]
-      chain:
-        - type: ReplaceText
-          regex:
-            pattern: '<name>app</name>'
-            with: "'<name>' + #projectName + '</name>'"
-        - type: ReplaceText
-          regex:
-            pattern: '<artifactId>app</artifactId>'
-            with: "'<artifactId>' + #projectName + '</artifactId>'"
-        - type: ReplaceText
-          regex:
-            pattern: '<java.version>11</java.version>'
-            with: "'<java.version>' + #jvmVersion + '</java.version>'"
+    # - include: ["pom.xml"]
+    #   chain:
+    #     - type: ReplaceText
+    #       regex:
+    #         pattern: '<name>app</name>'
+    #         with: "'<name>' + #projectName + '</name>'"
+    #     - type: ReplaceText
+    #       regex:
+    #         pattern: '<artifactId>app</artifactId>'
+    #         with: "'<artifactId>' + #projectName + '</artifactId>'"
+    #     - type: ReplaceText
+    #       regex:
+    #         pattern: '<java.version>11</java.version>'
+    #         with: "'<java.version>' + #jvmVersion + '</java.version>'"
 
         # - type: OpenRewriteRecipe
         #   recipe: org.openrewrite.maven.ChangePackaging # org.openrewrite.maven.ChangeDependencyGroupIdAndArtifactId
@@ -183,70 +260,70 @@ engine:
     #-----------------------------------------------------------------------------------------------------------------#
     
     # Modify package name + location for java files.
-    - include: ["**/*.java"]
-      chain:
-        - type: RewritePath
-          regex: (?<prefix>.*)org.example.app(?<suffix>.*)
-          rewriteTo: "#prefix + #projectName + #suffix" # SpEL expression. You can use '#g1' and '#g2' to reference 'match groups'
+    # - include: ["**/*.java"]
+    #   chain:
+    #     - type: RewritePath
+    #       regex: (?<prefix>.*)org.example.app(?<suffix>.*)
+    #       rewriteTo: "#prefix + 'org.example' + #projectName + #suffix" # SpEL expression. You can use '#g1' and '#g2' to reference 'match groups'
         
-        - type: OpenRewriteRecipe
-          recipe: org.openrewrite.java.ChangePackage
-          options:
-            oldPackageName: "'org.example.app'"
-            newPackageName: "'org.example.' + #newPackageName"
-            recursive: true
+    #     - type: OpenRewriteRecipe
+    #       recipe: org.openrewrite.java.ChangePackage
+    #       options:
+    #         oldPackageName: "'org.example.app'"
+    #         newPackageName: "'org.example.' + #newPackageName"
+    #         recursive: true
           
     #-----------------------------------------------------------------------------------------------------------------#
     #                                               Tiltfile Templating                                                  #
     #-----------------------------------------------------------------------------------------------------------------#
 
-    # Add Tiltfile for 'allClusters' option (enabled live update)
-    # inject 'k8s_context()' to target all cluster.
-    - include: ['Tiltfile']
-      condition: "#chooseCluster == 'all' and #enableLiveUpdate"
-      chain:
-        - type: ReplaceText
-          substitutions:
-            - text: "<default-project-name>"
-              with: "#projectName"
-            - text: "'<k8s-context>'"
-              with: "'k8s_context()'"
-            - text: "<default-namespace>"         # @TODO: better practice
-              with: "#namespace"
-            - text: "<default-image-repo-name>"
-              with: "#imageRepo"
+    # # Add Tiltfile for 'allClusters' option (enabled live update)
+    # # inject 'k8s_context()' to target all cluster.
+    # - include: ['Tiltfile']
+    #   condition: "#chooseCluster == 'all' and #enableLiveUpdate"
+    #   chain:
+    #     - type: ReplaceText
+    #       substitutions:
+    #         - text: "<default-project-name>"
+    #           with: "#projectName"
+    #         - text: "'<k8s-context>'"
+    #           with: "'k8s_context()'"
+    #         - text: "<default-namespace>"         # @TODO: better practice
+    #           with: "#namespace"
+    #         - text: "<default-image-repo-name>"
+    #           with: "#imageRepo"
     
-    # Add Tiltfile for 'localClusters' option (enabled live update)
-    # remove allow_k8s_contexts() from Tiltfile
-    - include: ['Tiltfile']
-      condition: "#chooseCluster == 'local' and #enableLiveUpdate"
-      chain:
-        - type: ReplaceText
-          substitutions:
-            - text: "<default-project-name>"
-              with: "#projectName"
-            - text: "allow_k8s_contexts('<k8s-context>')" 
-              with: "#clusterContext" # cannot be empty string, bypassing by setting a null var as replacement text
-            - text: "<default-namespace>"
-              with: "#namespace"
-            - text: "<default-image-repo-name>"
-              with: "#imageRepo"
+    # # Add Tiltfile for 'localClusters' option (enabled live update)
+    # # remove allow_k8s_contexts() from Tiltfile
+    # - include: ['Tiltfile']
+    #   condition: "#chooseCluster == 'local' and #enableLiveUpdate"
+    #   chain:
+    #     - type: ReplaceText
+    #       substitutions:
+    #         - text: "<default-project-name>"
+    #           with: "#projectName"
+    #         - text: "allow_k8s_contexts('<k8s-context>')" 
+    #           with: "#clusterContext" # cannot be empty string, bypassing by setting a null var as replacement text
+    #         - text: "<default-namespace>"
+    #           with: "#namespace"
+    #         - text: "<default-image-repo-name>"
+    #           with: "#imageRepo"
     
-    # Add Tiltfile for 'specificCluster' option (enabled live update)
-    # inject target cluster's context
-    - include: ['Tiltfile']
-      condition: "#chooseCluster == 'specificCluster' and #enableLiveUpdate"
-      chain:
-        - type: ReplaceText
-          substitutions:
-            - text: "<project-name>"
-              with: "#projectName"
-            - text: "<k8s-context>"
-              with: "#clusterContext"
-            - text: "<default-namespace>"
-              with: "#namespace"
-            - text: "<default-image-repo-name>"
-              with: "#imageRepo"
+    # # Add Tiltfile for 'specificCluster' option (enabled live update)
+    # # inject target cluster's context
+    # - include: ['Tiltfile']
+    #   condition: "#chooseCluster == 'specificCluster' and #enableLiveUpdate"
+    #   chain:
+    #     - type: ReplaceText
+    #       substitutions:
+    #         - text: "<project-name>"
+    #           with: "#projectName"
+    #         - text: "<k8s-context>"
+    #           with: "#clusterContext"
+    #         - text: "<default-namespace>"
+    #           with: "#namespace"
+    #         - text: "<default-image-repo-name>"
+    #           with: "#imageRepo"
             
   # # onConflict: UseFirst
     
