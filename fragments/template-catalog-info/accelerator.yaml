@@ -8,7 +8,7 @@ engine:
   
   merge:
     # Modify catalog-info.yaml
-    - include: ["catalog/*.yaml", "config/values.yaml"]
+    - include: ["catalog/*.yaml"]
       # exclude: ["catalog/docs/**"]
       chain:
         # - type: OpenRewriteRecipe

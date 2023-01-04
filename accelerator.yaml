@@ -94,7 +94,7 @@ engine:
             # - name: projectName
             #   expression: "#projectName"
 
-    - include: ["catalog/*.yaml", "config/values.yaml"]
+    - include: ["catalog/*.yaml"]
       # exclude: ["catalog/docs/**"]
       chain:
         type: InvokeFragment
