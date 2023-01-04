@@ -4,7 +4,7 @@ metadata:
   name: java-rewrite-package-fragment
   namespace: accelerator-system
 spec:
-  displayName: Select Java Virtual Machine Version
+  displayName: Rewrite Java application's pakage name and move source files under new package path.
   git:
     url: https://github.com/GuyBalmas/tanzu-application-accelerator.git
     subPath: fragments/java-rewrite-package

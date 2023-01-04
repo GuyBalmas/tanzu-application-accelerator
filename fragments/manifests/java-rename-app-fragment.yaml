@@ -4,7 +4,7 @@ metadata:
   name: java-rename-app-fragment
   namespace: accelerator-system
 spec:
-  displayName: Enables Live Update & Live Debug features
+  displayName: Rename Java application artifact
   git:
     url: https://github.com/GuyBalmas/tanzu-application-accelerator.git
     subPath: fragments/java-rename-app
