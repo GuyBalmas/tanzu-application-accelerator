@@ -32,7 +32,7 @@ engine:
   
   merge:
     # Modify workload.yaml java version environment variable.
-    - include: ["config/workload.yaml", "config/values.yaml"]
+    - include: ["config/*.yaml"]
       chain:
         # - type: OpenRewriteRecipe
         #   recipe: org.openrewrite.yaml.ChangeValue

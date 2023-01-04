@@ -70,7 +70,7 @@ engine:
   merge:   
     # include all, exclude specifically handled files.  
     - include: ['**/*']
-      exclude: ['Tiltfile', 'config/**', 'catalog/*.yaml', 'target/**', 'docs/**', '.vscode/**', "**/*.java", "pom.xml", "fragments/**"]
+      exclude: ['Tiltfile', 'config/*.yaml', 'catalog/*.yaml', 'target/**', 'docs/**', '.vscode/**', "**/*.java", "pom.xml", "fragments/**"]
     
     - include: ["**/*.java"]
       chain:
@@ -84,7 +84,7 @@ engine:
         - type: InvokeFragment
           reference: java-rename-app-fragment
           
-    - include: [config/**]
+    - include: [config/*.yaml]
       chain:
         - type: InvokeFragment
           reference: template-workload-fragment
