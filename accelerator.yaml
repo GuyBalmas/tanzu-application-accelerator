@@ -77,6 +77,13 @@ engine:
         - type: InvokeFragment
           reference: java-rewrite-package-fragment
     
+    - include: ["pom.xml"]
+      chain: 
+        - type: InvokeFragment
+          reference: jvm-version-fragment
+        - type: InvokeFragment
+          reference: java-rename-app-fragment
+          
     # - include: [config/**]
     #   chain:
     #     - type: InvokeFragment
