@@ -69,10 +69,10 @@ accelerator:
 engine:
   merge:   
     # include all, exclude specifically handled files.  
-    - include: ['*/**']
+    - include: ['**/*']
       exclude: ['Tiltfile', 'config/**', 'catalog/*.yaml', 'target/**', 'docs/**', '.vscode/**', "**/*.java", "pom.xml", "fragments/**"]
     
-    - include: ["*/**.java"]
+    - include: ["**/*.java"]
       chain:
         - type: InvokeFragment
           reference: java-rewrite-package-fragment
