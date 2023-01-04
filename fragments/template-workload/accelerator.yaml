@@ -1,0 +1,60 @@
+accelerator:
+  options:
+    - name: namespace
+      label: Namespace
+      description: Application's namespace to deploy to.
+      dataType: string
+      inputType: text
+      required: true
+      defaultValue: apps
+      validationRegex: "^[a-z0-9-]+$"
+
+    - name: greetingMessage
+      label: Greeting Message
+      description: Greeting message displayed by the Hello World app.
+      dataType: string
+      inputType: text
+      required: true
+      defaultValue: Welcome to TAP accelerator demo!
+
+    - name: greetingDescription
+      label: Greeting Description
+      description: Greeting message description displayed by the Hello World app.
+      dataType: string
+      inputType: text
+      required: true
+      defaultValue: by Cloud Native Applications team.
+
+engine:
+  let:
+  - name: jvmWorkloadPatch
+    expression: "#jvmVersion == '1.8' ? '8' : #jvmVersion"
+  
+  merge:
+    # Modify workload.yaml java version environment variable.
+    - include: ["config/workload.yaml", "config/values.yaml"]
+      chain:
+        - type: OpenRewriteRecipe
+          recipe: org.openrewrite.yaml.ChangeValue
+          options:
+            oldKeyPath: '"$.spec.build.env[?(@.name == ''BP_JVM_VERSION'')].value"'
+            value: "#jvmWorkloadPatch"
+
+        # - type: Replacetext
+        #   substitutions:
+        #     - text: "default-java-version"          # workload env var
+        #       with: "#jvmVersion"
+        
+        - type: ReplaceText
+          substitutions:
+            - text: "default-greeting-message"      # workload env var
+              with: "#greetingMessage"
+            - text: "default-greeting-description"  # workload env var
+              with: "#greetingDescription"
+            - text: "default-project-name"          # workload 
+              with: "#projectName"
+            # - text: "default-java-version"          # workload env var
+            #   with: "#jvmVersion"
+            # - text: default-apps-namespace          # workload
+            #   with: "#namespace"
+        - type: YTT

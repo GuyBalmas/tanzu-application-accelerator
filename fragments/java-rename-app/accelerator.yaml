@@ -1,0 +1,41 @@
+accelerator:
+  options: []
+    # - name: packageName
+    #   label: Package Name
+    #   description: Application's package name for Java files.  
+    #   dataType: string
+    #   inputType: text
+    #   required: true
+    #   defaultValue: org.example
+  
+engine:
+  let:
+    - name: appNamePomPatch
+      expression: "'<name>' + #projectName + '</name>'"
+    - name: appArtifactIdPomPatch
+      expression: "'<artifactId>' + #projectName + '</artifactId>'"
+    - name: appGroupIdPomPatch
+      expression: "'<groupId>' + #packageName + '</groupId>'"
+  merge:
+    #-----------------------------------------------------------------------------------------------------------------#
+    #                                               Maven Templating                                                  #
+    #-----------------------------------------------------------------------------------------------------------------#
+
+    # Modify pom.xml java version.
+    - include: ["pom.xml"]
+      chain:
+        - type: ReplaceText
+          regex:
+            pattern: '<name>app</name>'
+            with: "#appNamePomPatch"
+
+        - type: ReplaceText
+          regex:
+            pattern: '<artifactId>app</artifactId>'
+            with: "#appArtifactIdPomPatch"
+
+        - type: ReplaceText
+          regex:
+            pattern: '<groupId>com.example</groupId>'
+            with: "#appGroupIdPomPatch"
+        

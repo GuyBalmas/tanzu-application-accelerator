@@ -1,0 +1,57 @@
+accelerator:
+  options:
+    - name: jvmVersion
+      label: JVM Version
+      description: Java Virtual Machine Version.
+      inputType: select
+      dataType: string # [string | boolean | number]
+      choices:
+      - text: "Java 17"
+        value: "17" 
+      - text: "Java 11"
+        value: "11"
+      - text: "Java 8"
+        value: "1.8"
+      defaultValue: "11"
+      required: true
+  
+engine:
+  let:
+    - name: jvmPomPatch
+      expression: "'<java.version>' + #jvmVersion + '</java.version>'"
+    - name: jvmWorkloadPatch
+      expression: "#jvmVersion == '1.8' ? '8' : #jvmVersion"
+  merge:
+    #-----------------------------------------------------------------------------------------------------------------#
+    #                                               Maven Templating                                                  #
+    #-----------------------------------------------------------------------------------------------------------------#
+
+    # Modify pom.xml java version.
+    - include: ["pom.xml"]
+      chain:
+        # - type: ReplaceText
+        #   regex:
+        #     pattern: '<name>app</name>'
+        #     with: "'<name>' + #projectName + '</name>'"
+        # - type: ReplaceText
+        #   regex:
+        #     pattern: '<artifactId>app</artifactId>'
+        #     with: "'<artifactId>' + #projectName + '</artifactId>'"
+        - type: ReplaceText
+          regex:
+            pattern: '<java.version>11</java.version>'
+            with: "#jvmPomPatch"
+        
+    # # Modify workload.yaml java version environment variable.
+    # - include: ["config/workload.yaml"]
+    #   chain:
+    #     - type: OpenRewriteRecipe
+    #       recipe: org.openrewrite.yaml.ChangeValue
+    #       options:
+    #         oldKeyPath: '"$.spec.build.env[?(@.name == ''BP_JVM_VERSION'')].value"'
+    #         value: "#jvmWorkloadPatch"
+    #     # - type: Replacetext
+    #     #   substitutions:
+    #     #     - text: "default-java-version"          # workload env var
+    #     #       with: "#jvmVersion"
+

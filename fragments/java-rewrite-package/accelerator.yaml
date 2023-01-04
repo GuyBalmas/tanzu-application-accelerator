@@ -1,0 +1,34 @@
+accelerator:
+  options:
+    - name: packageName
+      label: Package Name
+      description: Application's package name for Java files.  
+      dataType: string
+      inputType: text
+      required: true
+      defaultValue: org.example
+      
+    #-----------------------------------------------------------------------------------------------------------------#
+    #                                               Java Templating                                                   #
+    #-----------------------------------------------------------------------------------------------------------------#
+
+engine:
+  let:
+    - name: newPackageName # name of a symbol, must be camelCase
+      expression:
+        "#projectName.replaceAll('-', '_')" 
+  merge:
+    # Modify package name + location for java files.
+    - include: ["**/*.java"]
+      chain:
+        - type: RewritePath
+          regex: (?<prefix>.*)org.example.app(?<suffix>.*)
+          rewriteTo: "#prefix + #packageName + #projectName + #suffix" # SpEL expression. You can use '#g1' and '#g2' to reference 'match groups'
+        
+        - type: OpenRewriteRecipe
+          recipe: org.openrewrite.java.ChangePackage
+          options:
+            oldPackageName: "'org.example.app'"
+            newPackageName: "#packageName + #newPackageName"
+            recursive: true
+          

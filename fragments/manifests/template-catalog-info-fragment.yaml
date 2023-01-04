@@ -1,0 +1,10 @@
+apiVersion: accelerator.apps.tanzu.vmware.com/v1alpha1
+kind: Fragment
+metadata:
+  name: template-catalog-info-fragment
+  namespace: accelerator-system
+spec:
+  displayName: Template catalog-info.yaml and application docs
+  git:
+    url: https://github.com/GuyBalmas/tanzu-application-accelerator.git
+    subPath: fragments/template-catalog-info

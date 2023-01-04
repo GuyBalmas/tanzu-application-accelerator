@@ -1,0 +1,10 @@
+apiVersion: accelerator.apps.tanzu.vmware.com/v1alpha1
+kind: Fragment
+metadata:
+  name: java-rewrite-package-fragment
+  namespace: accelerator-system
+spec:
+  displayName: Select Java Virtual Machine Version
+  git:
+    url: https://github.com/GuyBalmas/tanzu-application-accelerator.git
+    subPath: fragments/java-rewrite-package

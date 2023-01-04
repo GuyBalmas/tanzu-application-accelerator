@@ -1,0 +1,26 @@
+accelerator:
+  options: []
+    
+engine:
+  let:
+  - name: jvmWorkloadPatch
+    expression: "#jvmVersion == '1.8' ? '8' : #jvmVersion"
+  
+  merge:
+    # Modify catalog-info.yaml
+    - include: ["catalog/**", "config/values.yaml"]
+      exclude: ["catalog/docs/**"]
+      chain:
+        # - type: OpenRewriteRecipe
+        #   recipe: org.openrewrite.yaml.ChangeValue
+        #   options:
+        #     oldKeyPath: '"$.spec.build.env[?(@.name == ''BP_JVM_VERSION'')].value"'
+        #     value: "#jvmWorkloadPatch"
+
+        - type: ReplaceText
+          substitutions:
+            - text: "default-project-name"          # catalog 
+              with: "#projectName"
+            - text: default-apps-namespace          # catalog
+              with: "#namespace"
+        - type: YTT

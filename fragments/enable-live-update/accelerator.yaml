@@ -1,0 +1,100 @@
+accelerator:
+  options:
+    - name: enableLiveUpdate
+      label: Enable Live Update
+      description: Enables Live Update & Live Debug features
+      inputType: checkbox
+      dataType: boolean
+      required: true
+      defaultValue: false
+
+    - name: imageRepo
+      inputType: text
+      label: Source Image Repository
+      description:  Name (prefix) of an image repository for hosting source code image. Should only contain the <repo-name> prefix, as the full path pattern will be <repo-name>/<image-name>.
+      defaultValue: "my-image-repo"
+      dependsOn:
+        name: enableLiveUpdate
+      rewuired: true
+
+    - name: chooseCluster
+      label: Choose Cluster
+      description: Choose which clusters to auto-configure for the project, or specify a custom context of a specific cluster.
+      inputType: select
+      dataType: string
+      choices:
+      - text: "All Clusters"
+        value: all 
+      - text: "Only Local Clusters"
+        value: local
+      - text: "Specific Cluster"
+        value: specificCluster
+      defaultValue: all
+      dependsOn:
+        name: enableLiveUpdate
+      required: true
+
+    - name: clusterContext
+      label: Cluster Context
+      description: Specify the cluster's context
+      dataType: string
+      inputType: text
+      required: true
+      defaultValue: ""
+      dependsOn: 
+        name: chooseCluster
+        value: specificCluster
+
+engine:
+  merge:
+    #-----------------------------------------------------------------------------------------------------------------#
+    #                                               Tiltfile Templating                                                  #
+    #-----------------------------------------------------------------------------------------------------------------#
+
+    # Add Tiltfile for 'allClusters' option (enabled live update)
+    # inject 'k8s_context()' to target all cluster.
+    - include: ['Tiltfile']
+      condition: "#chooseCluster == 'all' and #enableLiveUpdate"
+      chain:
+        - type: ReplaceText
+          substitutions:
+            - text: "<default-project-name>"
+              with: "#projectName"
+            - text: "'<k8s-context>'"
+              with: "'k8s_context()'"
+            - text: "<default-namespace>"         # @TODO: better practice
+              with: "#namespace"
+            - text: "<default-image-repo-name>"
+              with: "#imageRepo"
+    
+    # Add Tiltfile for 'localClusters' option (enabled live update)
+    # remove allow_k8s_contexts() from Tiltfile
+    - include: ['Tiltfile']
+      condition: "#chooseCluster == 'local' and #enableLiveUpdate"
+      chain:
+        - type: ReplaceText
+          substitutions:
+            - text: "<default-project-name>"
+              with: "#projectName"
+            - text: "allow_k8s_contexts('<k8s-context>')" 
+              with: "#clusterContext" # cannot be empty string, bypassing by setting a null var as replacement text
+            - text: "<default-namespace>"
+              with: "#namespace"
+            - text: "<default-image-repo-name>"
+              with: "#imageRepo"
+    
+    # Add Tiltfile for 'specificCluster' option (enabled live update)
+    # inject target cluster's context
+    - include: ['Tiltfile']
+      condition: "#chooseCluster == 'specificCluster' and #enableLiveUpdate"
+      chain:
+        - type: ReplaceText
+          substitutions:
+            - text: "<project-name>"
+              with: "#projectName"
+            - text: "<k8s-context>"
+              with: "#clusterContext"
+            - text: "<default-namespace>"
+              with: "#namespace"
+            - text: "<default-image-repo-name>"
+              with: "#imageRepo"
