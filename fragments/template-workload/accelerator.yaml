@@ -39,6 +39,18 @@ engine:
           options:
             oldKeyPath: '"$.spec.build.env[?(@.name == ''BP_JVM_VERSION'')].value"'
             value: "#jvmVersion" # "#jvmWorkloadPatch"
+        
+        # - type: OpenRewriteRecipe
+        #   recipe: org.openrewrite.yaml.ChangeValue
+        #   options:
+        #     oldKeyPath: '"$.spec.build.env[?(@.name == ''GREETING_MSG'')].value"'
+        #     value: "#greetingMessage" 
+        
+        # - type: OpenRewriteRecipe
+        #   recipe: org.openrewrite.yaml.ChangeValue
+        #   options:
+        #     oldKeyPath: '"$.spec.build.env[?(@.name == ''GREETING_DESC'')].value"'
+        #     value: "#greetingDescription" 
 
         - type: ReplaceText
           substitutions:
