@@ -2,13 +2,13 @@ accelerator:
   options: []
     
 engine:
-  let:
-  - name: jvmCatalogPatch
-    expression: "#jvmVersion == '1.8' ? '8' : #jvmVersion"
+  # let:
+  # - name: jvmCatalogPatch
+  #   expression: "#jvmVersion == '1.8' ? '8' : #jvmVersion"
   
   merge:
     # Modify catalog-info.yaml
-    - include: ["catalog/*.yaml"]
+    - include: ["catalog/*.yaml", "config/values.yaml"]
       # exclude: ["catalog/docs/**"]
       chain:
         # - type: OpenRewriteRecipe
