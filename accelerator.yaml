@@ -70,20 +70,20 @@ engine:
   merge:   
     # include all, exclude specifically handled files.  
     - include: ['*/**']
-      exclude: ['Tiltfile', 'config/**', 'catalog/*.yaml', 'target/**', 'docs/**', '.vscode/**', "**/*.java", "pom.xml", "fragments"]
+      exclude: ['Tiltfile', 'config/**', 'catalog/*.yaml', 'target/**', 'docs/**', '.vscode/**', "**/*.java", "pom.xml", "fragments/**"]
     
     - include: ["*/**.java"]
       chain:
         - type: InvokeFragment
           reference: java-rewrite-package-fragment
     
-    - include: [config/**]
-      chain:
-        - type: InvokeFragment
-          reference: template-workload-fragment
-          # let:
-          #   - name: jvmVersion
-          #     expression: "#jvmVersion"
+    # - include: [config/**]
+    #   chain:
+    #     - type: InvokeFragment
+    #       reference: template-workload-fragment
+    #       let:
+    #         - name: jvmVersion
+    #           expression: "#jvmVersion"
 
     # - include: ["catalog/*.yaml", "config/values.yaml"]
     #   # exclude: ["catalog/docs/**"]
@@ -98,8 +98,8 @@ engine:
       chain:
         - type: InvokeFragment
           reference: enable-live-update-fragment
-          # let:
-          # - name: namespace
-          #   expression: "#namespace"
+          let:
+          - name: namespace
+            expression: "#namespace"
   
   onConflict: UseFirst
