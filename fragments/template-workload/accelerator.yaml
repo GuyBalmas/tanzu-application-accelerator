@@ -54,21 +54,14 @@ engine:
 
         - type: ReplaceText
           substitutions:
-            - text: "default-greeting-message"      # workload env var
+            - text: "default-greeting-message"      
               with: "#greetingMessage"
-            - text: "default-greeting-description"  # workload env var
+            - text: "default-greeting-description"  
               with: "#greetingDescription"
-            - text: "default-project-name"          # workload 
+            - text: "default-project-name"          
               with: "#projectName"
-            # - text: "default-java-version"          # workload env var
-            #   with: "#jvmVersion"
-            - text: "default-java-version"          # workload env var
-              with: "#jvmWorkloadPatch"
-            # - text: default-apps-namespace          # workload
-            #   with: "#namespace"
+            - text: "default-java-version"          
+              with: "#jvmWorkloadPatch"             # NOT WORKING: injects '1.8' for Java 8 instead of '8'
+            
         - type: YTT
-        - type: OpenRewriteRecipe
-          recipe: org.openrewrite.yaml.ChangeValue
-          options:
-            oldKeyPath: '"$.spec.build.env[?(@.name == ''BP_JVM_VERSION'')].value"'
-            value: "#jvmWorkloadPatch"
+        
