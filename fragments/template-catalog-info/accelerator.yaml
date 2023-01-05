@@ -1,6 +1,3 @@
-accelerator:
-  options: []
-    
 engine:
   # let:
   # - name: jvmCatalogPatch
