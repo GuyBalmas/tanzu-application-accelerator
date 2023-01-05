@@ -6,35 +6,13 @@ accelerator:
       dataType: string
       inputType: text
       required: true
-      defaultValue: BBBBBBBB
+      defaultValue: CCCCCCC
 
 engine:
-  # let:
-  # - name: jvmCatalogPatch
-  #   expression: "#jvmVersion == '1.8' ? '8' : #jvmVersion"    # NOT WORKING
-  
   merge:
     # Modify workload.yaml java version environment variable.
     - include: ["catalog/catalog-info.yaml", "catalog/values.yaml", "catalog/mkdocs.yaml"]
       chain:
-        # - type: OpenRewriteRecipe
-        #   recipe: org.openrewrite.yaml.ChangeValue
-        #   options:
-        #     oldKeyPath: '"$.spec.build.env[?(@.name == ''BP_JVM_VERSION'')].value"'
-        #     value: "#jvmVersion" # "#jvmWorkloadPatch"
-        
-        # - type: OpenRewriteRecipe
-        #   recipe: org.openrewrite.yaml.ChangeValue
-        #   options:
-        #     oldKeyPath: '"$.spec.build.env[?(@.name == ''GREETING_MSG'')].value"'
-        #     value: "#greetingMessage" 
-        
-        # - type: OpenRewriteRecipe
-        #   recipe: org.openrewrite.yaml.ChangeValue
-        #   options:
-        #     oldKeyPath: '"$.spec.build.env[?(@.name == ''GREETING_DESC'')].value"'
-        #     value: "#greetingDescription" 
-
         - type: ReplaceText
           substitutions:
             - text: "default-project-name"          # workload 
