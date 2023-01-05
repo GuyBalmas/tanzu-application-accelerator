@@ -94,8 +94,8 @@ engine:
             # - name: projectName
             #   expression: "#projectName"
 
-    - include: ["catalog/*.yaml"]             # @TODO: find the bug
-      # exclude: ["catalog/docs/**"]
+    - include: ["catalog/**"]             # @TODO: find the bug
+      exclude: ["catalog/docs/**"]
       chain:
         type: InvokeFragment
         reference: template-catalog-info-fragment
