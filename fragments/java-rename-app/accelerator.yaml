@@ -1,12 +1,5 @@
 accelerator:
   options: []
-    # - name: packageName
-    #   label: Package Name
-    #   description: Application's package name for Java files.  
-    #   dataType: string
-    #   inputType: text
-    #   required: true
-    #   defaultValue: org.example
   
 engine:
   let:

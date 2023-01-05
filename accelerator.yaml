@@ -7,7 +7,7 @@ accelerator:
   - Kubernetes
   - Spring-Boot
 
-  options: # a list of options
+  options: 
     
     - name: projectName
       label: Name

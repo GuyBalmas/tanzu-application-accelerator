@@ -1,13 +1,6 @@
 accelerator:
   options: []
-    # - name: blah
-    #   label: blah
-    #   description: blah blah blah
-    #   dataType: string
-    #   inputType: text
-    #   required: true
-    #   defaultValue: FFFFFF
-
+    
 engine:
   merge:
     # Modify workload.yaml java version environment variable.
@@ -15,12 +8,10 @@ engine:
       chain:
         - type: ReplaceText
           substitutions:
-            - text: "default-project-name"          # workload 
+            - text: "default-project-name"          # catalog
               with: "#projectName"
-            - text: "default-java-version"          # workload env var
+            - text: "default-java-version"          # catalog tag
               with: "#jvmVersion"
-            - text: default-apps-namespace          # workload
+            - text: default-apps-namespace          # catalog url
               with: "#namespace"
-            # - text: "default-java-version"          # workload env var
-            #   with: "#jvmCatalogPatch"
         - type: YTT
