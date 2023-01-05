@@ -67,8 +67,7 @@ engine:
             - name: jvmVersion
               expression: "#jvmVersion"
 
-    - include: ["catalog/catalog-info.yaml", "catalog/values.yaml", "catalog/mkdocs.yaml"]
-      # exclude: ["catalog/docs/**"]
+    - include: ["catalog/*.yaml"] #["catalog/catalog-info.yaml", "catalog/values.yaml", "catalog/mkdocs.yaml"]
       chain:
         - type: InvokeFragment
           reference: template-catalog-info-fragment
