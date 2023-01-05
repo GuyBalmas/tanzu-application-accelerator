@@ -12,6 +12,7 @@ accelerator:
 engine:
   merge:
     - include: ["**/*"]
+      chain: []
 # engine:
 #   # let:
 #   # - name: jvmWorkloadPatch

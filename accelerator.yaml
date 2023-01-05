@@ -52,7 +52,7 @@ accelerator:
 
     - name: template-catalog-info-fragment
       expose:
-        - name: blah
+        - name: "*"
 
     - name: jvm-version-fragment
       expose:
