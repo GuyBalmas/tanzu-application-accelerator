@@ -34,11 +34,11 @@ engine:
     # Modify workload.yaml java version environment variable.
     - include: ["config/*.yaml"]
       chain:
-        - type: OpenRewriteRecipe
-          recipe: org.openrewrite.yaml.ChangeValue
-          options:
-            oldKeyPath: '"$.spec.build.env[?(@.name == ''BP_JVM_VERSION'')].value"'
-            value: "#jvmVersion" # "#jvmWorkloadPatch"
+        # - type: OpenRewriteRecipe
+        #   recipe: org.openrewrite.yaml.ChangeValue
+        #   options:
+        #     oldKeyPath: '"$.spec.build.env[?(@.name == ''BP_JVM_VERSION'')].value"'
+        #     value: "#jvmVersion" # "#jvmWorkloadPatch"
         
         # - type: OpenRewriteRecipe
         #   recipe: org.openrewrite.yaml.ChangeValue
