@@ -1,4 +1,13 @@
-accelerator: {}
+accelerator: 
+  options:
+    - name: projectName
+      label: Name
+      description: Provide a name for your new project.
+      dataType: string
+      inputType: text
+      required: true
+      defaultValue: my-java-app
+      validationRegex: "^[a-z0-9-]+$"
 
 engine:
   # let:
@@ -8,7 +17,7 @@ engine:
   merge:
     # Modify catalog-info.yaml
     - include: ["catalog/*.yaml"]
-      # chain:
+      chain:
         # - type: OpenRewriteRecipe
         #   recipe: org.openrewrite.yaml.ChangeValue
         #   options:
@@ -21,4 +30,4 @@ engine:
             #   with: "#projectName"
             # - text: default-apps-namespace          # catalog
             #   with: "#namespace"
-        # - type: YTT
+        - type: YTT
