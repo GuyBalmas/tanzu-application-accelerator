@@ -101,9 +101,11 @@ engine:
       chain:
         type: InvokeFragment
         reference: template-catalog-info-fragment
-        # let: 
-        #   - name: namespace
-        #     expression: "#namespace" 
+        let: 
+          - name: namespace
+            expression: "#namespace" 
+          - name: jvmVersion
+            expression: "#jvmVersion"
 
     - include: ["Tiltfile"]
       chain:
