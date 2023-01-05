@@ -51,6 +51,8 @@ accelerator:
         - name: greetingDescription
 
     - name: template-catalog-info-fragment
+      expose:
+        - name: blah
 
     - name: jvm-version-fragment
       expose:
