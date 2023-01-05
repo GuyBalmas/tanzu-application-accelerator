@@ -11,7 +11,7 @@ accelerator:
 engine:
   merge:
     # Modify workload.yaml java version environment variable.
-    - include: ["catalog/catalog-info.yaml", "catalog/values.yaml", "catalog/mkdocs.yaml"]
+    - include: ["catalog/*.yaml"] # ["catalog/catalog-info.yaml", "catalog/values.yaml", "catalog/mkdocs.yaml"]
       chain:
         - type: ReplaceText
           substitutions:
