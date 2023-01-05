@@ -97,13 +97,24 @@ engine:
     - include: ["catalog/catalog-info.yaml", "catalog/values.yaml", "catalog/mkdocs.yaml"]
       # exclude: ["catalog/docs/**"]
       chain:
-        type: InvokeFragment
-        reference: template-catalog-info-fragment
-        let: 
-          - name: namespace
-            expression: "#namespace" 
-          - name: jvmVersion
-            expression: "#jvmVersion"
+        # type: InvokeFragment
+        # reference: template-catalog-info-fragment
+        # let: 
+        #   - name: namespace
+        #     expression: "#namespace" 
+        #   - name: jvmVersion
+        #     expression: "#jvmVersion"
+        - type: ReplaceText
+          substitutions:
+            - text: "default-project-name"          # workload 
+              with: "#projectName"
+            - text: "default-java-version"          # workload env var
+              with: "#jvmVersion"
+            - text: default-apps-namespace          # workload
+              with: "#namespace"
+            # - text: "default-java-version"          # workload env var
+            #   with: "#jvmCatalogPatch"
+        - type: YTT
 
     - include: ["Tiltfile"]
       chain:
