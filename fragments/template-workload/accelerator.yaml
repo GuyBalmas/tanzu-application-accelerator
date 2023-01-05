@@ -32,7 +32,7 @@ engine:
   
   merge:
     # Modify workload.yaml java version environment variable.
-    - include: ["config/*.yaml"]
+    - include: ["config/**.yaml"]
       chain:
         # - type: OpenRewriteRecipe
         #   recipe: org.openrewrite.yaml.ChangeValue
@@ -60,10 +60,10 @@ engine:
               with: "#greetingDescription"
             - text: "default-project-name"          # workload 
               with: "#projectName"
-            - text: "default-java-version"          # workload env var
-              with: "#jvmVersion"
             # - text: "default-java-version"          # workload env var
-            #   with: "#jvmWorkloadPatch"
+            #   with: "#jvmVersion"
+            - text: "default-java-version"          # workload env var
+              with: "#jvmWorkloadPatch"
             # - text: default-apps-namespace          # workload
             #   with: "#namespace"
         - type: YTT
