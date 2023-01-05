@@ -26,8 +26,6 @@ accelerator:
         - name: greetingDescription
 
     - name: template-catalog-info-fragment
-      # expose:
-      #   - name: "*"
 
     - name: jvm-version-fragment
       expose:
@@ -47,7 +45,7 @@ engine:
   merge:   
     # include all, exclude specifically handled files.  
     - include: ['**/*']
-      exclude: ['Tiltfile', 'config/*.yaml', 'catalog/*.yaml', 'target/**', 'docs/**', '.vscode/**', "**/*.java", "pom.xml", "fragments/**"]
+      exclude: ['Tiltfile', 'config/*.yaml', 'catalog/**', 'target/**', 'docs/**', '.vscode/**', "**/*.java", "pom.xml", "fragments/**"]
     
     - include: ["**/*.java"]
       chain:
@@ -87,5 +85,12 @@ engine:
           let:
           - name: namespace
             expression: "#namespace"
-  
+
+    - include: ["catalog/docs/*.md"]
+      chain:
+        - type: ReplaceText
+          regex:
+            pattern: 'Tanzu Java Web App'
+            with: "#projectName.replaceAll('-', ' ')"
+
   # onConflict: UseFirst
