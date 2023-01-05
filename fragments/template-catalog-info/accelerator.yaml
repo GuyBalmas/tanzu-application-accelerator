@@ -1,3 +1,5 @@
+accelerator: {}
+
 engine:
   # let:
   # - name: jvmCatalogPatch
@@ -5,8 +7,7 @@ engine:
   
   merge:
     # Modify catalog-info.yaml
-    - include: ["catalog/**"]
-      exclude: ["catalog/docs/**"]
+    - include: ["catalog/*.yaml"]
       chain:
         # - type: OpenRewriteRecipe
         #   recipe: org.openrewrite.yaml.ChangeValue
