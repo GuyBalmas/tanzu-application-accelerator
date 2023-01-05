@@ -1,13 +1,12 @@
 accelerator: 
   options:
-    - name: projectName
-      label: Name
-      description: Provide a name for your new project.
+    - name: dummy
+      label: dummy
+      description: dummy
       dataType: string
       inputType: text
       required: true
-      defaultValue: my-java-app
-      validationRegex: "^[a-z0-9-]+$"
+      defaultValue: dummy
 
 engine:
   # let:
