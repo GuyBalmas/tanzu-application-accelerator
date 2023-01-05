@@ -8,7 +8,7 @@ engine:
   
   merge:
     # Modify catalog-info.yaml
-    - include: ["catalog/*.yaml", "config/values.yaml"]
+    - include: ["catalog/*.yaml"]
       # exclude: ["catalog/docs/**"]
       chain:
         # - type: OpenRewriteRecipe
@@ -17,8 +17,8 @@ engine:
         #     oldKeyPath: '"$.spec.build.env[?(@.name == ''BP_JVM_VERSION'')].value"'
         #     value: "#jvmCatalogPatch"
 
-        - type: ReplaceText
-          substitutions: []
+        # - type: ReplaceText
+        #   substitutions: []
             # - text: "default-project-name"          # catalog 
             #   with: "#projectName"
             # - text: default-apps-namespace          # catalog
