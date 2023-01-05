@@ -9,7 +9,9 @@ accelerator:
       required: true
       defaultValue: blah
 
-
+engine:
+  merge:
+    include: ["catalog/*.yaml"]
 # engine:
 #   # let:
 #   # - name: jvmWorkloadPatch
