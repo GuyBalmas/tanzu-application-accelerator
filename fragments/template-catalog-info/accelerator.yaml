@@ -40,18 +40,14 @@ engine:
 
         - type: ReplaceText
           substitutions:
-            - text: "default-greeting-message"      # workload env var
-              with: "#greetingMessage"
-            - text: "default-greeting-description"  # workload env var
-              with: "#greetingDescription"
             - text: "default-project-name"          # workload 
               with: "#projectName"
             - text: "default-java-version"          # workload env var
               with: "#jvmVersion"
             # - text: "default-java-version"          # workload env var
             #   with: "#jvmWorkloadPatch"
-            # - text: default-apps-namespace          # workload
-            #   with: "#namespace"
+            - text: default-apps-namespace          # workload
+              with: "#namespace"
         - type: YTT
 
 
