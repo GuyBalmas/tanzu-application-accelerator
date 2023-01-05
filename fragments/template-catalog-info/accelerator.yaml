@@ -1,12 +1,12 @@
 accelerator:
-  options:
-    - name: blah
-      label: blah
-      description: blah blah blah
-      dataType: string
-      inputType: text
-      required: true
-      defaultValue: FFFFFF
+  options: []
+    # - name: blah
+    #   label: blah
+    #   description: blah blah blah
+    #   dataType: string
+    #   inputType: text
+    #   required: true
+    #   defaultValue: FFFFFF
 
 engine:
   merge:
