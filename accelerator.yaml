@@ -96,7 +96,7 @@ engine:
             # - name: projectName
             #   expression: "#projectName"
 
-    - include: ["catalog/*.yaml"]             # @TODO: find the bug
+    - include: ["catalog/catalog-info.yaml", "catalog/values.yaml", "catalog/mkdocs.yaml"]             # @TODO: find the bug
       # exclude: ["catalog/docs/**"]
       chain:
         type: InvokeFragment
