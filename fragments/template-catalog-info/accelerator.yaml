@@ -18,9 +18,9 @@ engine:
         #     value: "#jvmCatalogPatch"
 
         - type: ReplaceText
-          substitutions:
-            - text: "default-project-name"          # catalog 
-              with: "#projectName"
-            - text: default-apps-namespace          # catalog
-              with: "#namespace"
+          substitutions: []
+            # - text: "default-project-name"          # catalog 
+            #   with: "#projectName"
+            # - text: default-apps-namespace          # catalog
+            #   with: "#namespace"
         - type: YTT
