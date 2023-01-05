@@ -1,4 +1,3 @@
-
 accelerator:
   options:
     - name: blah
@@ -7,83 +6,43 @@ accelerator:
       dataType: string
       inputType: text
       required: true
-      defaultValue: blah
+      defaultValue: blahblah
 
 engine:
+  let:
+  - name: jvmCatalogPatch
+    expression: "#jvmVersion == '1.8' ? '8' : #jvmVersion"    # NOT WORKING
+  
   merge:
-    - include: ["**/*"]
-      chain: []
-# engine:
-#   # let:
-#   # - name: jvmWorkloadPatch
-#   #   expression: "#jvmVersion == '1.8' ? '8' : #jvmVersion"    # NOT WORKING
-  
-#   merge:
-#     # Modify workload.yaml java version environment variable.
-#     - include: ["catalog/*.yaml"]
-#       chain:
-#         # - type: OpenRewriteRecipe
-#         #   recipe: org.openrewrite.yaml.ChangeValue
-#         #   options:
-#         #     oldKeyPath: '"$.spec.build.env[?(@.name == ''BP_JVM_VERSION'')].value"'
-#         #     value: "#jvmVersion" # "#jvmWorkloadPatch"
+    # Modify workload.yaml java version environment variable.
+    - include: ["catalog/*.yaml"]
+      chain:
+        # - type: OpenRewriteRecipe
+        #   recipe: org.openrewrite.yaml.ChangeValue
+        #   options:
+        #     oldKeyPath: '"$.spec.build.env[?(@.name == ''BP_JVM_VERSION'')].value"'
+        #     value: "#jvmVersion" # "#jvmWorkloadPatch"
         
-#         # - type: OpenRewriteRecipe
-#         #   recipe: org.openrewrite.yaml.ChangeValue
-#         #   options:
-#         #     oldKeyPath: '"$.spec.build.env[?(@.name == ''GREETING_MSG'')].value"'
-#         #     value: "#greetingMessage" 
+        # - type: OpenRewriteRecipe
+        #   recipe: org.openrewrite.yaml.ChangeValue
+        #   options:
+        #     oldKeyPath: '"$.spec.build.env[?(@.name == ''GREETING_MSG'')].value"'
+        #     value: "#greetingMessage" 
         
-#         # - type: OpenRewriteRecipe
-#         #   recipe: org.openrewrite.yaml.ChangeValue
-#         #   options:
-#         #     oldKeyPath: '"$.spec.build.env[?(@.name == ''GREETING_DESC'')].value"'
-#         #     value: "#greetingDescription" 
+        # - type: OpenRewriteRecipe
+        #   recipe: org.openrewrite.yaml.ChangeValue
+        #   options:
+        #     oldKeyPath: '"$.spec.build.env[?(@.name == ''GREETING_DESC'')].value"'
+        #     value: "#greetingDescription" 
 
-#         - type: ReplaceText
-#           substitutions:
-#             - text: "default-project-name"          # workload 
-#               with: "#projectName"
-#             - text: "default-java-version"          # workload env var
-#               with: "#jvmVersion"
-#             # - text: "default-java-version"          # workload env var
-#             #   with: "#jvmWorkloadPatch"
-#             - text: default-apps-namespace          # workload
-#               with: "#namespace"
-#         - type: YTT
-
-
-
-
-# accelerator: 
-#   options:
-#     - name: dummy
-#       label: dummy
-#       description: dummy
-#       dataType: string
-#       inputType: text
-#       required: true
-#       defaultValue: dummy
-
-# engine:
-#   # let:
-#   # - name: jvmCatalogPatch
-#   #   expression: "#jvmVersion == '1.8' ? '8' : #jvmVersion"
-  
-#   merge:
-#     # Modify catalog-info.yaml
-#     - include: ["catalog/*.yaml"]
-#       chain:
-#         # - type: OpenRewriteRecipe
-#         #   recipe: org.openrewrite.yaml.ChangeValue
-#         #   options:
-#         #     oldKeyPath: '"$.spec.build.env[?(@.name == ''BP_JVM_VERSION'')].value"'
-#         #     value: "#jvmCatalogPatch"
-
-#         # - type: ReplaceText
-#         #   substitutions: []
-#             # - text: "default-project-name"          # catalog 
-#             #   with: "#projectName"
-#             # - text: default-apps-namespace          # catalog
-#             #   with: "#namespace"
-#         - type: YTT
+        - type: ReplaceText
+          substitutions:
+            - text: "default-project-name"          # workload 
+              with: "#projectName"
+            - text: "default-java-version"          # workload env var
+              with: "#jvmVersion"
+            - text: default-apps-namespace          # workload
+              with: "#namespace"
+            # - text: "default-java-version"          # workload env var
+            #   with: "#jvmCatalogPatch"
+        - type: YTT
