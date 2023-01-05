@@ -8,13 +8,13 @@ metadata:
   name: "(@= data.values.projectName @)"
   description: Tanzu Java Spring-Boot Web App, displaying kubernetes info on '/k8s' endpoint. Written by Guy Balmas.
   tags:
-    - App-Accelerator
+    - app-accelerator
     #@yaml/text-templated-strings
-    - "Java-(@= data.values.jvmVersion @)"
-    - Spring
-    - Web
-    - Tanzu
-    - Kubernetes
+    - "java-(@= data.values.jvmVersion @)"
+    - spring
+    - web
+    - tanzu
+    - kubernetes
   annotations:
     #@yaml/text-templated-strings
     'backstage.io/kubernetes-label-selector': "app.kubernetes.io/part-of=(@= data.values.projectName @)"
