@@ -6,12 +6,12 @@ accelerator:
       dataType: string
       inputType: text
       required: true
-      defaultValue: blahblah
+      defaultValue: sdgfgsaagffhfher
 
 engine:
-  let:
-  - name: jvmCatalogPatch
-    expression: "#jvmVersion == '1.8' ? '8' : #jvmVersion"    # NOT WORKING
+  # let:
+  # - name: jvmCatalogPatch
+  #   expression: "#jvmVersion == '1.8' ? '8' : #jvmVersion"    # NOT WORKING
   
   merge:
     # Modify workload.yaml java version environment variable.
