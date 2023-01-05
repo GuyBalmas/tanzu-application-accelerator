@@ -1,26 +1,27 @@
+### List currently installed fragments
 ```bash
 tanzu accelerator fragment list
 ```
 
+### Create a YAML manifest for the fragment
 ```yaml
 apiVersion: accelerator.apps.tanzu.vmware.com/v1alpha1
 kind: Fragment
 metadata:
-  name: java-version
+  name: <fragment-name>
   namespace: accelerator-system
 spec:
-  displayName: Select Java Version
+  displayName: <display-name>
   git:
     ref:
-      tag: tap-1.3
-    url: https://github.com/vmware-tanzu/application-accelerator-samples.git
-    subPath: fragments/java-version
+      branch: <branch>
+    url: https://github.com/GuyBalmas/tanzu-application-accelerator.git
+    subPath: fragments/<fragment-folder>
 ```
 
-apply
+### Apply
 ```bash
-tanzu accelerator apply -f ./java-version.yaml
-
+# apply
 tanzu accelerator apply -f ./fragments/manifests/enable-live-update-fragment.yaml
 tanzu accelerator apply -f ./fragments/manifests/java-rename-app-fragment.yaml
 tanzu accelerator apply -f ./fragments/manifests/java-rewrite-package-fragment.yaml
@@ -28,13 +29,16 @@ tanzu accelerator apply -f ./fragments/manifests/jvm-version-fragment.yaml
 tanzu accelerator apply -f ./fragments/manifests/template-catalog-info-fragment.yaml
 tanzu accelerator apply -f ./fragments/manifests/template-workload-fragment.yaml
 
+# delete if needed
 tanzu accelerator delete -f ./fragments/manifests/enable-live-update-fragment.yaml
 tanzu accelerator delete -f ./fragments/manifests/java-rename-app-fragment.yaml
 tanzu accelerator delete -f ./fragments/manifests/java-rewrite-package-fragment.yaml
 tanzu accelerator delete -f ./fragments/manifests/jvm-version-fragment.yaml
 tanzu accelerator delete -f ./fragments/manifests/template-catalog-info-fragment.yaml
 tanzu accelerator delete -f ./fragments/manifests/template-workload-fragment.yaml
-
 ```
 
+### Reconcile the accelerator 
+```bash
 tanzu accelerator update my-simple-acc --reconcile
+```
