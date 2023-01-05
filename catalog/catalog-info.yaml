@@ -24,6 +24,9 @@ metadata:
     - url: "http://(@= data.values.projectName @).(@= data.values.namespace @).tap-guy-lab-p8m8nm3rts18.ts-cna.com"
       name: Hello-World
     #@yaml/text-templated-strings
+    - url: "http://(@= data.values.projectName @).(@= data.values.namespace @).tap-guy-lab-p8m8nm3rts18.ts-cna.com/welcome"
+      name: Welcome
+    #@yaml/text-templated-strings
     - url: "http://(@= data.values.projectName @).(@= data.values.namespace @).tap-guy-lab-p8m8nm3rts18.ts-cna.com/k8s"
       name: K8S-spec
 spec:
