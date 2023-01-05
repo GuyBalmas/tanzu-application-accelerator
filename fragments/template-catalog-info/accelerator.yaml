@@ -6,7 +6,7 @@ accelerator:
       dataType: string
       inputType: text
       required: true
-      defaultValue: CCCCCCC
+      defaultValue: DDDDDDDD
 
 engine:
   merge:

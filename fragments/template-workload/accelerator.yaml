@@ -67,3 +67,8 @@ engine:
             # - text: default-apps-namespace          # workload
             #   with: "#namespace"
         - type: YTT
+        - type: OpenRewriteRecipe
+          recipe: org.openrewrite.yaml.ChangeValue
+          options:
+            oldKeyPath: '"$.spec.build.env[?(@.name == ''BP_JVM_VERSION'')].value"'
+            value: "#jvmWorkloadPatch"
