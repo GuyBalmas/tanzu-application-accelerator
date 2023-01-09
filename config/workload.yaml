@@ -35,7 +35,7 @@ spec:
         type: openapi   # We currently support any of openapi, aysncapi, graphql, grpc
         location:
           path: "/api-docs"  # The path to the api documentation
-        owner: dev-team   # The team that owns this
+        owner: cloud-native-applications-team   # The team that owns this
         #@yaml/text-templated-strings
         description: "A set of API endpoints to view k8s data of (@= data.values.projectName @) application."
         
