@@ -5,8 +5,10 @@ import org.example.app.kubernetes.K8sHandler;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 
 @RestController
+@RequestMapping("/hello")
 public class HelloController {
 	private final String coffeeImagePath = "https://media.istockphoto.com/id/1142411258/photo/how-to-make-coffee-latte-art.jpg?b=1&s=170667a&w=0&k=20&c=Yy1VEmlihscejIQ7o5hd43Jq5elwEpAiF32suyiS2M0=";
 
@@ -16,7 +18,7 @@ public class HelloController {
 	@Value("${greeting.description}")
 	private String greeting_desc;
 
-	@RequestMapping("/")
+	@GetMapping("/")
 	public String index() {
 		 return HtmlTemplate.htmlLandingPage(
 				 "Hello from example-app!",
@@ -25,7 +27,7 @@ public class HelloController {
 		 );
 	}
 
-	@RequestMapping("/welcome")
+	@GetMapping("/welcome")
 	public String welcome(){
 		return HtmlTemplate.htmlLandingPage(
 				greeting_message,
@@ -33,7 +35,7 @@ public class HelloController {
 		);
 	}
 
-	@RequestMapping("/coffee")
+	@GetMapping("/coffee")
 	public String coffee(){
 		return HtmlTemplate.htmlLandingPage(
 				"Who doesn't like coffee?",
