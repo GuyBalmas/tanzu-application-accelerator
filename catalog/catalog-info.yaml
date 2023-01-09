@@ -33,6 +33,8 @@ spec:
   type: service
   lifecycle: experimental
   owner: cloud-native-applications-team
+  #@yaml/text-templated-strings
+  system: "(@= data.values.projectName @)s"
   providesApis: 
     #@yaml/text-templated-strings
     - "(@= data.values.namespace @)/(@= data.values.projectName @)-dev"
