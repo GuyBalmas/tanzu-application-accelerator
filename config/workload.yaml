@@ -37,6 +37,8 @@ spec:
           path: "/api-docs"  
         owner: cloud-native-applications-team   
         #@yaml/text-templated-strings
+        system: "(@= data.values.projectName @)s"
+        #@yaml/text-templated-strings
         description: "A set of API endpoints to view k8s data of (@= data.values.projectName @) application."
         
   source:
