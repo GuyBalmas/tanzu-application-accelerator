@@ -91,5 +91,3 @@ engine:
           regex:
             pattern: 'Tanzu Java Web App'
             with: "#projectName.replaceAll('-', ' ')"
-
-  # onConflict: UseFirst
