@@ -26,7 +26,7 @@ engine:
       chain:
         - type: RewritePath
           regex: (?<prefix>.*)org.example.app(?<suffix>.*)
-          rewriteTo: "#prefix + #packageName + '.' + #formattedProjectName + #suffix" # SpEL expression. You can use '#g1' and '#g2' to reference 'match groups'
+          rewriteTo: "#prefix + #packageName.replaceAll('.','/') + '/' + #formattedProjectName + #suffix" # SpEL expression. You can use '#g1' and '#g2' to reference 'match groups'
           # rewriteTo: "#prefix + #formattedPackageName + '/' + #formattedProjectName + #suffix" # SpEL expression. You can use '#g1' and '#g2' to reference 'match groups'
       
         - type: OpenRewriteRecipe
