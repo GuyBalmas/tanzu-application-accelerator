@@ -47,7 +47,7 @@ engine:
   merge:   
     # include all, exclude specifically handled files.  
     - include: ['**/*']
-      exclude: ['Tiltfile', 'config/*.yaml', 'catalog/**', 'target/**', 'docs/**', '.vscode/**', "**/*.java", "pom.xml", "fragments/**"]
+      exclude: ['Tiltfile', 'config/*.yaml', 'catalog/**', 'target/**', 'docs/**', '.vscode/**', "**/*.java", "pom.xml", "fragments/**", "README.md"]
     
     - include: ["**/*.java"]
       chain:
@@ -87,7 +87,7 @@ engine:
           - name: namespace
             expression: "#namespace"
 
-    - include: ["catalog/docs/*.md"]
+    - include: ["catalog/docs/*.md", "README.md"]
       chain:
         - type: InvokeFragment
           reference: readme-override-app-name-fragment
