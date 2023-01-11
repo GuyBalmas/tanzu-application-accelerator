@@ -1,0 +1,10 @@
+apiVersion: accelerator.apps.tanzu.vmware.com/v1alpha1
+kind: Accelerator
+metadata:
+  name: java-web-podinfo
+  namespace: accelerator-system
+spec:
+  git:
+    url: https://github.com/GuyBalmas/tanzu-application-accelerator.git
+    ref:
+      branch: main
