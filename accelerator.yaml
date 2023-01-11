@@ -91,7 +91,7 @@ engine:
       chain:
         - type: InvokeFragment
           reference: readme-override-app-name-fragment
-        # - type: RewritePath
-        #   regex: "docs/web-app/README.md"
-        #   rewriteTo: "README.md"
+        - type: RewritePath
+          regex: 'docs/web-app/README.md'
+          rewriteTo: 'README.md'
         
