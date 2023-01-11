@@ -80,5 +80,8 @@ kubectl apply -f fragments/manifests/accelerator-manifest.yaml
 
 ### Reconcile the accelerator 
 ```bash
+tanzu accelerator update <accelerator-name> --reconcile
+
+# for example
 tanzu accelerator update my-simple-acc --reconcile
 ```
