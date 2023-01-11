@@ -40,6 +40,8 @@ accelerator:
     - name: enable-live-update-fragment
       expose: 
         - name: "*"
+    
+    - name: readme-override-app-name-fragment
 
 engine:
   merge:   
@@ -87,7 +89,10 @@ engine:
 
     - include: ["catalog/docs/*.md"]
       chain:
-        - type: ReplaceText
-          regex:
-            pattern: 'Tanzu Java Web App'
-            with: "#projectName.replaceAll('-', ' ')"
+        - type: InvokeFragment
+          reference: readme-override-app-name-fragment
+
+        # - type: ReplaceText
+        #   regex:
+        #     pattern: 'Tanzu Java Web App'
+        #     with: "#projectName.replaceAll('-', ' ')"

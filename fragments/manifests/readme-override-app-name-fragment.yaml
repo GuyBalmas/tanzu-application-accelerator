@@ -1,0 +1,12 @@
+apiVersion: accelerator.apps.tanzu.vmware.com/v1alpha1
+kind: Fragment
+metadata:
+  name: readme-override-app-name-fragment
+  namespace: accelerator-system
+spec:
+  displayName: Inject application name into README.md files.
+  git:
+    url: https://github.com/GuyBalmas/tanzu-application-accelerator.git
+    subPath: fragments/readme-override-app-name
+    ref:
+      branch: main

@@ -1,0 +1,15 @@
+accelerator:
+  options: []
+    
+engine:
+  merge:
+    - include: ["**/*.md"]
+      chain:
+        - type: ReplaceText
+          regex:
+            pattern: 'Tanzu Java Web App'
+            with: "#projectName.replaceAll('-', ' ')"
+        - type: ReplaceText
+          regex:
+            pattern: 'tanzu-java-app'
+            with: "#projectName.replaceAll('-', ' ')"
