@@ -87,11 +87,13 @@ engine:
           - name: namespace
             expression: "#namespace"
 
-    - include: ["catalog/docs/*.md", "README.md"]
+    - include: ["catalog/docs/*.md", "docs/web-app/README.md"]
       chain:
         - type: InvokeFragment
           reference: readme-override-app-name-fragment
-
+        - type: RewritePath
+          regex: "docs/web-app/README.md"
+          rewriteTo: "README.md"
         # - type: ReplaceText
         #   regex:
         #     pattern: 'Tanzu Java Web App'

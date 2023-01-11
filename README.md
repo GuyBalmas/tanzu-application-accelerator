@@ -1,27 +1,87 @@
-# tanzu-java-app
+# Tanzu Java Web Application Accelerator
 
-This is a sample of a Java Spring app that works with Tilt and the Tanzu Application Platform.
+This accelerator generates Java web application projects, configured for `Tanzu Application Platform`.
 
-## Dependencies
-1. [kubectl CLI](https://kubernetes.io/docs/tasks/tools/)
-1. [Tilt version >= v0.23.2](https://docs.tilt.dev/install.html)
-1. Tanzu CLI and the apps plugin v0.2.0 which are provided as part of [Tanzu Application Platform](https://network.tanzu.vmware.com/products/tanzu-application-platform)
-1. A cluster with Tanzu Application Platform, and the "Default Supply Chain", plus its dependencies. This supply chains is part of [Tanzu Application Platform](https://network.tanzu.vmware.com/products/tanzu-application-platform).
+## Features:
+1. Supports Unit-Testing using `TAP`'s OOTB `source-test-scan-to-url` supply chain.
+2. Supports automatic API registeration in `API Catalog` for application's runtime generated API. 
+3. Supports templating catalog-info for application regitration in `Service Catalog` including listing provided API's.  
+4. Optional: Supports live-update and live-debug.
+5. Optional: Supports cluster choice (local only, all contexts or custom cluster context). 
 
-## Running the sample
+---
 
-Start the app deployment by running:
+## Apply Fragments onto `TAP`
 
+### 1. List currently installed fragments
+```bash
+tanzu accelerator fragment list
 ```
-tilt up
+
+### 2. Create a YAML manifest for the fragment
+```yaml
+apiVersion: accelerator.apps.tanzu.vmware.com/v1alpha1
+kind: Fragment
+metadata:
+  name: <fragment-name>
+  namespace: accelerator-system
+spec:
+  displayName: <display-name>
+  git:
+    ref:
+      branch: <branch>
+    url: https://github.com/GuyBalmas/tanzu-application-accelerator.git
+    subPath: fragments/<fragment-folder>
 ```
 
-You can hit the spacebar to open the UI in a browser. 
+### 3. Apply
+```bash
+tanzu accelerator apply -f <YAML-file-path>
 
-- > If you see an "Update error" message like the one below, then just follow the instructions and allow that context:
-    ```
-    Stop! tap-beta2 might be production.
-    If you're sure you want to deploy there, add:
-        allow_k8s_contexts('tap-beta2')
-    to your Tiltfile. Otherwise, switch k8s contexts and restart Tilt.
-    ```
+# apply this accelerator's fragments 
+tanzu accelerator apply -f ./fragments/manifests/enable-live-update-fragment.yaml
+tanzu accelerator apply -f ./fragments/manifests/java-rename-app-fragment.yaml
+tanzu accelerator apply -f ./fragments/manifests/java-rewrite-package-fragment.yaml
+tanzu accelerator apply -f ./fragments/manifests/jvm-version-fragment.yaml
+tanzu accelerator apply -f ./fragments/manifests/template-catalog-info-fragment.yaml
+tanzu accelerator apply -f ./fragments/manifests/template-workload-fragment.yaml
+tanzu accelerator apply -f ./fragments/manifests/readme-override-app-name-fragment.yaml
+
+# delete if needed
+tanzu accelerator delete -f <YAML-file-path>
+# or
+tanzu accelerator fragment delete <fragment-name>
+```
+
+## Apply Accelerator onto `TAP`
+
+### 1. Create a YAML manifest for the Accelerator
+```yaml
+apiVersion: accelerator.apps.tanzu.vmware.com/v1alpha1
+kind: Accelerator
+metadata:
+  name: <accelerator-name>
+  namespace: accelerator-system
+spec:
+  git:
+    url: <git-repo-url>
+    ref:
+      branch: <git-branch>
+```
+
+### 2. Apply
+
+```bash
+kubectl apply -f <accelerator-manifest-path>
+
+# for example
+kubectl apply -f fragments/manifests/accelerator-manifest.yaml
+```
+
+### 3. Reconcile the accelerator 
+```bash
+tanzu accelerator update <accelerator-name> --reconcile
+
+# for example
+tanzu accelerator update my-simple-acc --reconcile
+```
