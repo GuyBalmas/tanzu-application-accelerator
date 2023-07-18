@@ -15,7 +15,7 @@ accelerator:
       defaultValue: "my-image-repo"
       dependsOn:
         name: enableLiveUpdate
-      rewuired: true
+      required: true
 
     - name: chooseCluster
       label: Choose Cluster
