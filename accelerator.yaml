@@ -1,5 +1,5 @@
 accelerator:
-  displayName: Kubernetes Java Web App
+  displayName: Java Web Service
   description: Tanzu Java Spring-Boot Web App, displaying kubernetes info.
   iconUrl: https://upload.wikimedia.org/wikipedia/labs/b/ba/Kubernetes-icon-color.svg
   tags:
