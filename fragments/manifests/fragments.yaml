@@ -1,0 +1,101 @@
+apiVersion: accelerator.apps.tanzu.vmware.com/v1alpha1
+kind: Fragment
+metadata:
+  name: enable-live-update-fragment
+  namespace: accelerator-system
+spec:
+  displayName: Enables Live Update & Live Debug features
+  git:
+    url: https://github.com/GuyBalmas/tanzu-application-accelerator.git
+    subPath: fragments/enable-live-update
+    ref:
+      branch: main
+---
+apiVersion: accelerator.apps.tanzu.vmware.com/v1alpha1
+kind: Fragment
+metadata:
+  name: java-rename-app-fragment
+  namespace: accelerator-system
+spec:
+  displayName: Rename Java application artifact
+  git:
+    url: https://github.com/GuyBalmas/tanzu-application-accelerator.git
+    subPath: fragments/java-rename-app
+    ref:
+      branch: main
+---
+apiVersion: accelerator.apps.tanzu.vmware.com/v1alpha1
+kind: Fragment
+metadata:
+  name: java-rewrite-package-fragment
+  namespace: accelerator-system
+spec:
+  displayName: Rewrite Java application's pakage name and move source files under new package path.
+  git:
+    url: https://github.com/GuyBalmas/tanzu-application-accelerator.git
+    subPath: fragments/java-rewrite-package
+    ref:
+      branch: main
+---
+apiVersion: accelerator.apps.tanzu.vmware.com/v1alpha1
+kind: Fragment
+metadata:
+  name: jvm-version-fragment
+  namespace: accelerator-system
+spec:
+  displayName: Select Java virtual machine version
+  git:
+    url: https://github.com/GuyBalmas/tanzu-application-accelerator.git
+    subPath: fragments/jvm-version
+    ref:
+      branch: main
+---
+apiVersion: accelerator.apps.tanzu.vmware.com/v1alpha1
+kind: Fragment
+metadata:
+  name: readme-override-app-name-fragment
+  namespace: accelerator-system
+spec:
+  displayName: Inject application name into README.md files.
+  git:
+    url: https://github.com/GuyBalmas/tanzu-application-accelerator.git
+    subPath: fragments/readme-override-app-name
+    ref:
+      branch: main
+---
+apiVersion: accelerator.apps.tanzu.vmware.com/v1alpha1
+kind: Fragment
+metadata:
+  name: template-catalog-info-fragment
+  namespace: accelerator-system
+spec:
+  displayName: Template catalog-info.yaml and application docs
+  git:
+    url: https://github.com/GuyBalmas/tanzu-application-accelerator.git
+    subPath: fragments/template-catalog-info
+    ref:
+      branch: main
+---
+apiVersion: accelerator.apps.tanzu.vmware.com/v1alpha1
+kind: Fragment
+metadata:
+  name: template-workload-fragment
+  namespace: accelerator-system
+spec:
+  displayName: Template workload.yaml
+  git:
+    url: https://github.com/GuyBalmas/tanzu-application-accelerator.git
+    subPath: fragments/template-workload
+    ref:
+      branch: main
+---
+apiVersion: accelerator.apps.tanzu.vmware.com/v1alpha1
+kind: Accelerator
+metadata:
+  name: java-web-service
+  namespace: accelerator-system
+spec:
+  git:
+    url: https://github.com/GuyBalmas/tanzu-application-accelerator.git
+    ref:
+      branch: main

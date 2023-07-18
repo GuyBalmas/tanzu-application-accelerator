@@ -1,7 +1,7 @@
 apiVersion: accelerator.apps.tanzu.vmware.com/v1alpha1
 kind: Accelerator
 metadata:
-  name: java-web-podinfo
+  name: java-web-service
   namespace: accelerator-system
 spec:
   git:
